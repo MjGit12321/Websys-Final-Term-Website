@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Sign up</title>
     <link rel="stylesheet" href="style.css">
     <style>
         .center-content {
@@ -57,6 +57,8 @@
             font-size: 14px;
             width: 70%;
             margin-top: 10px;
+
+            transition: 0.3s all;
         }
         #left-content{
             position: relative;
@@ -100,6 +102,13 @@
             text-align: center;
             cursor: pointer;
             padding-right: 0;
+
+            transition: 0.3s all;
+        }
+
+        #LoginBtn:hover{
+            background-color: #003459;
+            color: white;
         }
         p{
             margin: 10px 0;
@@ -117,6 +126,10 @@
         }
         .social-icons img:last-child {
             margin-right: 0;
+        }
+        #CoverLoginBtn:hover{
+            background-color: #f3f3f3;
+            color: black;
         }
     </style>
 </head>
@@ -141,7 +154,7 @@
                     <img src="Icons/eye close.png" class="pass-icon" width="20px" height="20px" alt="Toggle password visibility"> 
                 </div>
 
-                <input type="button" class="login-input" id="LoginBtn" value="Sign up">  
+                <input type="button" class="login-input" id="LoginBtn" value="Sign up" onclick="location.href='Log in.html'">  
             </div>
 
             <p>or log in using</p>
@@ -155,7 +168,7 @@
         <div id="right-cover">
             <img src="Pictures/Sign in pic.png" alt="" srcset="">
             <h2>Already have an account?</>
-            <button id="CoverLoginBtn">Login</button>
+            <button id="CoverLoginBtn" onclick="location.href='Log in.html'">Login</button>
         </div>
     </div>
 </body>

@@ -69,7 +69,7 @@
             align-items: center;
             justify-content: flex-start;
             background: #F3F3F3;
-            border: 1px solid #00A8E8;
+            border: 2px solid #00A8E8;
             border-radius: 0px 10px 10px 0px;
             font-weight: 600;
             padding: 20px 16px;
@@ -92,12 +92,194 @@
         }
         .main-content {
             width: 90%;
-            min-height: 90%;
+            height: 95%;
             background: #F3F3F3;
             margin: 0 auto;
-            padding: 24px;
+            padding: 18px;
             border-radius: 10px;
             box-sizing: border-box;
+        }
+        .content-grid {
+            display: grid;
+            gap: 16px;
+        }
+        .row {
+            display: grid;
+            grid-template-columns: 0.8fr 0.8fr;
+           
+            gap: 16px;
+        }
+        .panel {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 10px 18px 18px 18px;
+            box-shadow: 0 12px 20px rgba(0,0,0,0.08);
+            border: 2px solid #007EA7;
+            position: relative;
+            overflow: hidden;
+        }
+        .panel::before{
+            content: '';
+            width: 100%;
+            height: 15%;
+            background-color: #007EA7;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        .welcome-panel {
+            display: grid;
+            gap: 16px;
+        }
+        .welcome-panel h2 {
+            margin: 0;
+            font-size: 26px;
+            line-height: 1.1;
+            color: #F3F3F3;
+            z-index: 2;
+        }
+        .welcome-panel h3 {
+            margin: 0;
+            font-size: 15px;
+            color: black;
+        }
+        .details-card {
+          
+            background: #e5e5e5;
+            border-radius: 10px;
+            padding: 14px;
+            color: #283444;
+        
+            
+            grid-row: span 2;
+        }
+        .details-card h4 {
+            margin: 0;
+            font-size: 16px;
+        }
+        .details-card p {
+            margin: 0;
+            font-size: 13px;
+    
+        }
+        .stats-grid {
+            display: grid;
+            gap: 12px;
+            grid-template-columns: 1fr 1fr;
+        }
+        .stats-card {
+            background: #e5e5e5;
+            border-radius: 10px;
+            padding: 8px;
+            min-height: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        
+        }
+        .stats-card strong {
+            margin: 0;
+            font-size: 20px;
+            margin-left: 40px;
+        }
+        .stats-card span {
+            font-size: 13px;
+            color: #465a6b;
+        }
+        .stats-card h3 {
+            margin: 0;
+        }
+        .panel > h3 {
+            margin: 0!important;
+            font-size: 18px !important;
+            color: #F3F3F3 !important;
+            z-index: 2;
+            position: relative;
+            margin-bottom: 25px !important;
+            
+        }
+        .panel h3 {
+            margin: 0;
+            font-size: 18px;
+            color: black;
+            font-weight: 100;
+            margin-bottom: 5px;
+            
+        }
+        
+        .pending-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .pending-table th,
+        .pending-table td {
+            border: 1px solid #c9d7e7;
+            padding: 10px 12px;
+            font-size: 13px;
+            text-align: left;
+        }
+        .pending-table th {
+            background: #f2f7fb;
+            color: #1f3d5a;
+        }
+        
+        .recent-products {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+        .product-card {
+            background: #007EA7;
+            border-radius: 18px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            box-shadow: 0 12px 20px rgba(0,0,0,0.07);
+            
+            color: #F3F3F3;
+        }
+        .product-card img {
+            width: 100%;
+            border-radius: 16px;
+            object-fit: cover;
+            height: 130px;
+        }
+        .product-card .price {
+           
+            font-size: 18px;
+            font-weight: 700;
+            color: black;
+        }
+        .product-card .name {
+            margin: 0;
+            font-size: 15px;
+            font-weight: 700;
+        }
+        .product-card .description {
+            margin: 0;
+            font-size: 13px;
+            color: #667085;
+            line-height: 1.4;
+        }
+        .product-card .buy-button {
+            margin-top: auto;
+            margin-left: 45px;
+            background: #12c56e;
+            color: white;
+            border: none;
+            padding: 5px 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+            align-self: flex-start;
+        }
+        .img-whitebg{
+            background-color: #F3F3F3;
+            border-radius: 10px;
+            padding: 5px;
         }
     </style>
 </head>
@@ -115,11 +297,129 @@
         <button><img src="Icons/Product Icon.png" alt="" srcset="">Products</button> 
         <button><img src="Icons/Cart Icon.png" alt="" srcset="">Carts</button> 
         <button><img src="Icons/Orders Icon.png" alt="" srcset="">Orders</button> 
-        <button><img src="Icons/Logout Icon.png" alt="" srcset="">Log out</button> 
+        <button onclick="location.href='Log in.html'"><img src="Icons/Logout Icon.png" alt="" srcset="">Log out</button> 
     </aside>
     <div id="main-frame" class="center">
         <div class="main-content">
-
+            <div class="content-grid">
+                <div class="row">
+                    <div class="panel welcome-panel">
+                        <h2>Welcome Back MJ Jade G. Piquero!</h2>
+                        <div class="stats-grid">
+                            <div class="details-card">
+                                <h4>Address</h4>
+                                <p>Purok 13, Poblacion, Valencia City, Bukidnon</p>
+                                <br>
+                                <p>Details:</p>
+                                <p>May isa daycare, dilito luyo sa China ang Asia gawas sa china para na wala ka</p>
+                            </div>
+                            <div class="stats-card">
+                                <h3>Total Spent</h3>
+                                <strong>₱ 100,000</strong>
+                                
+                            </div>
+                            <div class="stats-card">
+                                <h3>Completed Orders</h3>
+                                <strong>200</strong>
+                                
+                            </div>
+                            <div class="stats-card">
+                                <h3>Total Orders</h3>
+                                <strong>2</strong>
+                                
+                            </div>
+                            <div class="stats-card">
+                                <h3>Cancelled Orders</h3>
+                                <strong>2</strong>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel pending-card">
+                        <h3>Pending Orders</h3>
+                        <table class="pending-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Date</th>
+                                    <th>Items</th>
+                                    <th>Total Price</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#2012</td>
+                                    <td>Apr 12</td>
+                                    <td>2</td>
+                                    <td>₱ 3,200</td>
+                                    <td>Pending</td>
+                                    <td>View</td>
+                                </tr>
+                                <tr>
+                                    <td>#2017</td>
+                                    <td>Apr 15</td>
+                                    <td>1</td>
+                                    <td>₱ 1,400</td>
+                                    <td>Pending</td>
+                                    <td>View</td>
+                                </tr>
+                                <tr>
+                                    <td>#2024</td>
+                                    <td>Apr 18</td>
+                                    <td>3</td>
+                                    <td>₱ 4,800</td>
+                                    <td>Pending</td>
+                                    <td>View</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="panel chart-card">
+                        <h3>Orders in the last 12 months</h3>
+                        <img src="Pictures/Chart.png" width="100%" height="200px" alt="" srcset="">
+                    </div>
+                    <div class="panel recent-card">
+                        <h3>Recently Viewed Items</h3>
+                        <div class="recent-products">
+                            <div class="product-card">
+                                <div class="img-whitebg">
+                                    <img src="Pictures/Shoes1.png" alt="Shoes for men">
+                                    <div class="price">₱ 1,000 <button class="buy-button">Buy</button></div>
+                                    
+                                </div>
+                                
+                                <div class="name">Shoes for men</div>
+                                
+                                
+                            </div>
+                            <div class="product-card">
+                                <div class="img-whitebg">
+                                    <img src="Pictures/Shoes1.png" alt="Shoes for men">
+                                    <div class="price">₱ 1,000 <button class="buy-button">Buy</button></div>
+                                </div>
+                                
+                                <div class="name">Shoes for men</div>
+                                
+                                
+                            </div>
+                            <div class="product-card">
+                                <div class="img-whitebg">
+                                    <img src="Pictures/Shoes1.png" alt="Shoes for men">
+                                    <div class="price">₱ 1,000 <button class="buy-button">Buy</button></div>
+                                </div>
+                                
+                                <div class="name">Shoes for men</div>
+                               
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

@@ -56,6 +56,12 @@
             cursor: pointer;
             font-size: 14px;
             width: 70%;
+
+            transition: 0.3s all;
+        }
+        #SignUpBtn:hover{
+            background-color: #f3f3f3;
+            color: black;
         }
         #right-content{
             position: relative;
@@ -94,6 +100,10 @@
             position: relative;
             width: 100%;
         }
+        #LoginBtn:hover{
+            background-color:#003459;
+            color: #f3f3f3;
+        }
         #LoginBtn{
             height: 40px;
             background-color: #00A8E8;
@@ -105,6 +115,8 @@
             cursor: pointer;
             padding-right: 0;
             margin: 20px 0 0 0;
+
+            transition: 0.3s all;
         }
         p{
             margin: 16px 0;
@@ -130,7 +142,7 @@
         <div id="left-cover">
             <img src="Pictures/Log in pic.png" alt="" srcset="">
             <h2>Don't have an account?</h2>
-            <button id="SignUpBtn">Sign Up</button>
+            <button id="SignUpBtn" onclick="location.href='Sign in.html'">Sign Up</button>
         </div>
         <div id="right-content">
             <h1>Welcome back!</h1>
@@ -146,7 +158,7 @@
                     <img src="Icons/eye close.png" class="pass-icon" width="20px" height="20px" alt="Toggle password visibility"> 
                 </div>
 
-                <input type="button" class="login-input" id="LoginBtn" value="Log in">  
+                <input type="button" class="login-input" id="LoginBtn" value="Log in" onclick="location.href='Dashboard.html'">  
             </div>
 
             <p>or sign in using</p>
