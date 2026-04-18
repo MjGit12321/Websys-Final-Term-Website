@@ -25,7 +25,7 @@ input[type="text"], input[type="password"], input[type="button"]{
 
 .sidebar-selected {
     background-color: #003459 !important;
-    border: none !important;
+    border: 2px solid #003459 !important;
     color: white !important;
 }
 

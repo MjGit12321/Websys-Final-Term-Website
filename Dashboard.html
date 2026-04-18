@@ -75,7 +75,14 @@
             padding: 20px 16px;
             cursor: pointer;
             gap: 10px;
+
+            transition: 0.3s all;
         }
+        .sidebar button:hover{
+            border: 2px solid black !important;
+            background-color: #dadada !important;
+        }
+
         .sidebar button img {
             max-height: 24px;
             width: auto;
@@ -105,7 +112,7 @@
         }
         .row {
             display: grid;
-            grid-template-columns: 0.8fr 0.8fr;
+            grid-template-columns: 0.4fr 0.4fr 0.4fr 0.4fr;
            
             gap: 16px;
         }
@@ -117,6 +124,8 @@
             border: 2px solid #007EA7;
             position: relative;
             overflow: hidden;
+
+            grid-column: span 2;
         }
         .panel::before{
             content: '';
@@ -154,10 +163,7 @@
             
             grid-row: span 2;
         }
-        .details-card h4 {
-            margin: 0;
-            font-size: 16px;
-        }
+        
         .details-card p {
             margin: 0;
             font-size: 13px;
@@ -226,7 +232,7 @@
         
         .recent-products {
             display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-template-columns: repeat(4, minmax(0, 1fr));
             gap: 18px;
         }
         .product-card {
@@ -265,11 +271,12 @@
         }
         .product-card .buy-button {
             margin-top: auto;
-            margin-left: 45px;
+            position: absolute;
+            right: 10px;
             background: #12c56e;
             color: white;
             border: none;
-            padding: 5px 14px;
+            padding: 5px 23px;
             border-radius: 5px;
             cursor: pointer;
             font-size: 12px;
@@ -280,7 +287,15 @@
             background-color: #F3F3F3;
             border-radius: 10px;
             padding: 5px;
+            position: relative;
         }
+        .chart-card{
+            grid-column: span 1;
+        }
+        .recent-card{
+            grid-column: span 3;
+        }
+        
     </style>
 </head>
 <body>
@@ -297,7 +312,7 @@
         <button><img src="Icons/Product Icon.png" alt="" srcset="">Products</button> 
         <button><img src="Icons/Cart Icon.png" alt="" srcset="">Carts</button> 
         <button><img src="Icons/Orders Icon.png" alt="" srcset="">Orders</button> 
-        <button onclick="location.href='Log in.html'"><img src="Icons/Logout Icon.png" alt="" srcset="">Log out</button> 
+        <button onclick="location.href='Home Page.html'"><img src="Icons/Logout Icon.png" alt="" srcset="">Log out</button> 
     </aside>
     <div id="main-frame" class="center">
         <div class="main-content">
@@ -307,7 +322,7 @@
                         <h2>Welcome Back MJ Jade G. Piquero!</h2>
                         <div class="stats-grid">
                             <div class="details-card">
-                                <h4>Address</h4>
+                                <h3>Address</h3>
                                 <p>Purok 13, Poblacion, Valencia City, Bukidnon</p>
                                 <br>
                                 <p>Details:</p>
@@ -404,6 +419,16 @@
                                 
                                 <div class="name">Shoes for men</div>
                                 
+                                
+                            </div>
+                            <div class="product-card">
+                                <div class="img-whitebg">
+                                    <img src="Pictures/Shoes1.png" alt="Shoes for men">
+                                    <div class="price">₱ 1,000 <button class="buy-button">Buy</button></div>
+                                </div>
+                                
+                                <div class="name">Shoes for men</div>
+                               
                                 
                             </div>
                             <div class="product-card">
