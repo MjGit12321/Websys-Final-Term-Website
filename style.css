@@ -22,3 +22,9 @@ input[type="text"], input[type="password"], input[type="button"]{
     border-radius: 10px;
     box-sizing: border-box;
 }
+
+.sidebar-selected {
+    background-color: #003459 !important;
+    border: none !important;
+    color: white !important;
+}
