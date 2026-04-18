@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .center-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            
+        }
+        #main-frame {
+            display: flex;
+            width: 771px;
+            height: 476px;
+            border-radius: 44px;
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.15);
+            background-color: #f3f3f3;
+        }
+        #left-cover{
+            position: relative;
+            border-radius: 22px;
+            background-color: #003459;
+            height: 100%;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+       
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        #left-cover img {
+            max-width: 80%;
+            max-height: 55%;
+            object-fit: contain;
+        }
+        #left-cover h2 {
+            color: white;
+            text-align: center;
+            
+            line-height: 1.4;
+        }
+        #SignUpBtn {
+            background-color: #003459;
+            color: white;
+            border: 2px solid white;
+            border-radius: 10px;
+            padding: 10px 24px;
+            cursor: pointer;
+            font-size: 14px;
+            width: 70%;
+        }
+        #right-content{
+            position: relative;
+            height: 100%;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: 40px;
+
+            text-align: center;
+        }
+
+        #main-frame #right-content .form{
+            width: 70%;
+            height: fit-content;
+
+            text-align: left;
+            margin: 0 auto;
+            margin-top: 10px;
+            
+        }
+        .login-input{
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            height: 35px;
+            margin: 3px 0px 10px 0px;
+
+            border: none;
+            background-color: #d9d9d9;
+            padding-right: 40px;
+        }
+        .input-with-icon{
+            position: relative;
+            width: 100%;
+        }
+        #LoginBtn{
+            height: 40px;
+            background-color: #00A8E8;
+            color: white;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            padding-right: 0;
+            margin: 20px 0 0 0;
+        }
+        p{
+            margin: 16px 0;
+        }
+        .pass-icon{
+            position: absolute;
+            top: 50%;
+            right: 12px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            z-index: 1;
+        }
+        .social-icons img {
+            margin-right: 10px;
+        }
+        .social-icons img:last-child {
+            margin-right: 0;
+        }
+    </style>
+</head>
+<body class="center-content">
+    <div id="main-frame">
+        <div id="left-cover">
+            <img src="Pictures/Log in pic.png" alt="" srcset="">
+            <h2>Don't have an account?</h2>
+            <button id="SignUpBtn">Sign Up</button>
+        </div>
+        <div id="right-content">
+            <h1>Welcome back!</h1>
+            <h5>Login your account.</h5>
+            <hr width="75%">
+
+            <div class="form">
+                <label for="Username">Username:</label><br>
+                <input type="text" class="login-input" id="Username" value=""> 
+                <label for="Password">Password:</label><br>
+                <div class="input-with-icon">
+                    <input type="password" class="login-input" id="Password" value="">   
+                    <img src="Icons/eye close.png" class="pass-icon" width="20px" height="20px" alt="Toggle password visibility"> 
+                </div>
+
+                <input type="button" class="login-input" id="LoginBtn" value="Log in">  
+            </div>
+
+            <p>or sign in using</p>
+            <div class="social-icons">
+                <img src="Icons/fb.svg" width="40px" height="40px" alt="" srcset="">
+                <img src="Icons/gmail.svg" width="40px" height="40px" alt="" srcset="">
+                <img src="Icons/tiktok.png" width="40px" height="40px" alt="" srcset="">
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>
