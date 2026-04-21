@@ -173,6 +173,67 @@
             background-color: #00A8E8;
             color: #F3F3F3;
         }
+        .product-card .picture-container{
+            width: 100%;
+            height: 180px;
+            background: #efefef;
+            border-radius: 5px;
+            position: relative;
+        }
+        .price-container{
+            position: absolute;
+            bottom: 8px;
+            left: 10px;
+            right: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .price-container .buy-button{
+            padding: 5px 23px;
+            background: #12c56e;
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid #12c56e;
+
+            transition: 0.3s all;
+        }
+        .price-container .buy-button:hover{
+            background-color: white;
+            color: #12c56e;
+            border: 1px solid #12c56e;
+        }
+        .label-description{
+            margin-top: 8px;
+        }
+        .label-description #description{
+            font-size: 0.7rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .label-description:hover{
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .picture-container .picture{
+            width: 100%;
+            height: 76%;
+            overflow:hidden;
+
+        }
+        .picture-container .picture img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .bottom-group .current-section{
+            background-color: #00A8E8;
+            color: #F3F3F3;
+        }
     </style>
 </head>
 <body>
@@ -183,7 +244,7 @@
             <div>MJ Jade G. Piquero</div>
         </div>
     </nav>
-    <aside id="sidebar" class="sidebar maximized">
+    <aside id="sidebar" class="sidebar minimized">
         <button id="Minmax_button" onclick="minmax_icon()"><img src="Icons/menu.png" alt="" srcset=""><span>Minimize</span></button> 
         <button onclick="location.href='Dashboard.html'"><img src="Icons/Black DB.png" alt="" srcset=""><span>Dashboard</span></button> 
         <button onclick="location.href='Products.html'" class="sidebar-selected"><img src="Icons/White Products.png" alt="" srcset=""><span>Products</span></button> 
@@ -216,29 +277,236 @@
             </div>
             <br><hr>
             <div class="product-grid-container">
-                <div class="product-card">1</div>
-                <div class="product-card">1</div>
-                <div class="product-card">1</div>
-                <div class="product-card">1</div>
-                <div class="product-card">1</div>
-                <div class="product-card">1</div>
-                <div class="product-card">1</div>
-                <div class="product-card">1</div>
-                <div class="product-card">1</div>
-                <div class="product-card">1</div>
-                <div class="product-card">1</div>
-                <div class="product-card">1</div>
-                <div class="product-card">1</div>
-                <div class="product-card">1</div>
-                <div class="product-card">1</div>
-                <div class="product-card">1</div>
-                <div class="product-card">1</div>
-                <div class="product-card">1</div>
+                <div class="product-card">
+                    <div class="picture-container">
+                        <div class="picture center">
+                            <img src="Pictures/Shoes2.png" alt="">
+                        </div>
+                        <div class="price-container">
+                            <div id="price">₱1,499</div>
+                            <button class="buy-button">Buy</button>
+                        </div>
+                    </div> 
+                    <div class="label-description">
+                        <div class="label">UrbanFlex Runner</div>
+                        <div id="description">Lightweight running shoes with breathable mesh and flexible sole for everyday comfort.</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="picture-container">
+                        <div class="picture center">
+                            <img src="Pictures/Shoes2.png" alt="">
+                        </div>
+                        <div class="price-container">
+                            <div id="price">Price</div>
+                            <button class="buy-button">₱1,899</button>
+                        </div>
+                    </div> 
+                    <div class="label-description">
+                        <div class="label">StreetCore High Tops</div>
+                        <div id="description">Stylish high-cut sneakers designed for casual wear with durable rubber outsole.</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="picture-container">
+                        <div class="picture center">
+                            <img src="Pictures/Shoes2.png" alt="">
+                        </div>
+                        <div class="price-container">
+                            <div id="price">Price</div>
+                            <button class="buy-button">₱2,299</button>
+                        </div>
+                    </div> 
+                    <div class="label-description">
+                        <div class="label">AirStride Pro</div>
+                        <div id="description">Cushioned performance shoes built for long runs and maximum shock absorption.</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="picture-container">
+                        <div class="picture center">
+                            <img src="Pictures/Shoes2.png" alt="">
+                        </div>
+                        <div class="price-container">
+                            <div id="price">₱899</div>
+                            <button class="buy-button">Buy</button>
+                        </div>
+                    </div> 
+                    <div class="label-description">
+                        <div class="label">Classic Canvas Low</div>
+                        <div id="description">Minimalist canvas sneakers perfect for daily use and easy outfit matching.</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="picture-container">
+                        <div class="picture center">
+                            <img src="Pictures/Shoes2.png" alt="">
+                        </div>
+                        <div class="price-container">
+                            <div id="price">₱2,499</div>
+                            <button class="buy-button">Buy</button>
+                        </div>
+                    </div> 
+                    <div class="label-description">
+                        <div class="label">TrailBlaze XT</div>
+                        <div id="description">Rugged outdoor shoes with strong grip, ideal for hiking and rough terrain.</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="picture-container">
+                        <div class="picture center">
+                            <img src="Pictures/Shoes2.png" alt="">
+                        </div>
+                        <div class="price-container">
+                            <div id="price">₱1,699</div>
+                            <button class="buy-button">Buy</button>
+                        </div>
+                    </div> 
+                    <div class="label-description">
+                        <div class="label">NeoSport Trainers</div>
+                        <div id="description">Versatile training shoes for gym workouts and active lifestyles.</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="picture-container">
+                        <div class="picture center">
+                            <img src="Pictures/Shoes2.png" alt="">
+                        </div>
+                        <div class="price-container">
+                            <div id="price">₱1,799</div>
+                            <button class="buy-button">Buy</button>
+                        </div>
+                    </div> 
+                    <div class="label-description">
+                        <div class="label">GlideMax Comfort</div>
+                        <div id="description">Ultra-soft cushioning with a sleek design for all-day walking comfort.</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="picture-container">
+                        <div class="picture center">
+                            <img src="Pictures/Shoes2.png" alt="">
+                        </div>
+                        <div class="price-container">
+                            <div id="price">₱1,599</div>
+                            <button class="buy-button">Buy</button>
+                        </div>
+                    </div> 
+                    <div class="label-description">
+                        <div class="label">Velocity Knit</div>
+                        <div id="description">Modern knit sneakers offering a snug fit and lightweight feel.</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="picture-container">
+                        <div class="picture center">
+                            <img src="Pictures/Shoes2.png" alt="">
+                        </div>
+                        <div class="price-container">
+                            <div id="price">₱2,199</div>
+                            <button class="buy-button">Buy</button>
+                        </div>
+                    </div> 
+                    <div class="label-description">
+                        <div class="label">Apex Court Shoes</div>
+                        <div id="description">Designed for court sports with enhanced grip and ankle support.</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="picture-container">
+                        <div class="picture center">
+                            <img src="Pictures/Shoes2.png" alt="">
+                        </div>
+                        <div class="price-container">
+                            <div id="price">₱1,499</div>
+                            <button class="buy-button">Buy</button>
+                        </div>
+                    </div> 
+                    <div class="label-description">
+                        <div class="label">RetroDash 90s</div>
+                        <div id="description">Vintage-inspired sneakers with bold colors and a nostalgic vibe.</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="picture-container">
+                        <div class="picture center">
+                            <img src="Pictures/Shoes2.png" alt="">
+                        </div>
+                        <div class="price-container">
+                            <div id="price">₱2,799</div>
+                            <button class="buy-button">Buy</button>
+                        </div>
+                    </div> 
+                    <div class="label-description">
+                        <div class="label">StormGuard Boots</div>
+                        <div id="description">Water-resistant boots built to handle rainy days and wet conditions.</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="picture-container">
+                        <div class="picture center">
+                            <img src="Pictures/Shoes2.png" alt="">
+                        </div>
+                        <div class="price-container">
+                            <div id="price">₱1,099</div>
+                            <button class="buy-button">Buy</button>
+                        </div>
+                    </div> 
+                    <div class="label-description">
+                        <div class="label">FlexMove Slip-ons</div>
+                        <div id="description">Easy-to-wear slip-on shoes with flexible soles for quick errands.</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="picture-container">
+                        <div class="picture center">
+                            <img src="Pictures/Shoes2.png" alt="">
+                        </div>
+                        <div class="price-container">
+                            <div id="price">₱1,999</div>
+                            <button class="buy-button">Buy</button>
+                        </div>
+                    </div> 
+                    <div class="label-description">
+                        <div class="label">PowerLift Trainers</div>
+                        <div id="description">Stable and supportive shoes ideal for weightlifting and strength training.</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="picture-container">
+                        <div class="picture center">
+                            <img src="Pictures/Shoes2.png" alt="">
+                        </div>
+                        <div class="price-container">
+                            <div id="price">₱1,899</div>
+                            <button class="buy-button">Buy</button>
+                        </div>
+                    </div> 
+                    <div class="label-description">
+                        <div class="label">CloudStep Runners</div>
+                        <div id="description">Soft and airy running shoes that reduce foot fatigue during long walks.</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="picture-container">
+                        <div class="picture center">
+                            <img src="Pictures/Shoes2.png" alt="">
+                        </div>
+                        <div class="price-container">
+                            <div id="price">₱1,699</div>
+                            <button class="buy-button">Buy</button>
+                        </div>
+                    </div> 
+                    <div class="label-description">
+                        <div class="label">PrimeEdge Sneakers</div>
+                        <div id="description">Sleek and modern sneakers designed for both style and everyday comfort.</div>
+                    </div>
+                </div>
             </div>
             <br><hr>
             <div class="bottom-group">
                 <div><</div>
-                <div>1</div>
+                <div class="current-section">1</div>
                 <div>2</div>
                 <div>3</div>
                 <div>4</div>
