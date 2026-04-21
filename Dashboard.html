@@ -52,7 +52,7 @@
         .sidebar {
             position: absolute;
             width: 140px;
-            margin-top: 60px;
+            margin-top: 52px;
             color: #ffffff;
             display: flex;
             flex-direction: column;
@@ -247,6 +247,7 @@
             box-shadow: 0 12px 20px rgba(0,0,0,0.07);
             
             color: #F3F3F3;
+            height: 208px;
         }
         .product-card img {
             width: 100%;
@@ -265,14 +266,18 @@
             font-size: 15px;
             font-weight: 700;
         }
-        .product-card .description {
+        .product-card .name p{
             margin: 0;
             font-size: 13px;
-            color: #667085;
-            line-height: 1.4;
+            font-weight: 500;
+            color: #d8d8d8;
         }
+        .product-card .name p:hover, .product-card .name:hover{
+            text-decoration: underline;
+        }
+    
         .product-card .buy-button {
-            margin-top: auto;
+            margin-top: -3px;
             position: absolute;
             right: 10px;
             background: #12c56e;
@@ -284,6 +289,14 @@
             font-size: 12px;
             font-weight: 700;
             align-self: flex-start;
+            border: 1px solid white;
+
+            transition: 0.3s all;
+        }
+        .product-card .buy-button:hover{
+            background-color: white;
+            color: #12c56e;
+            border: 1px solid #12c56e;
         }
         .img-whitebg{
             background-color: #F3F3F3;
@@ -317,10 +330,10 @@
     </nav>
     <aside id="sidebar" class="sidebar maximized">
         <button id="Minmax_button" onclick="minmax_icon()"><img src="Icons/menu.png" alt="" srcset=""><span>Minimize</span></button> 
-        <button class="sidebar-selected"><img src="Icons/Dashboard Icon.png" alt="" srcset=""><span>Dashboard</span></button> 
-        <button><img src="Icons/Product Icon.png" alt="" srcset=""><span>Products</span></button> 
-        <button><img src="Icons/Cart Icon.png" alt="" srcset=""><span>Carts</span></button> 
-        <button><img src="Icons/Orders Icon.png" alt="" srcset=""><span>Orders</span></button> 
+        <button onclick="location.href='Dashboard.html'" class="sidebar-selected"><img src="Icons/Dashboard Icon.png" alt="" srcset=""><span>Dashboard</span></button> 
+        <button onclick="location.href='Products.html'"><img src="Icons/Product Icon.png" alt="" srcset=""><span>Products</span></button> 
+        <button onclick="location.href='Carts.html'"><img src="Icons/Cart Icon.png" alt="" srcset=""><span>Carts</span></button> 
+        <button onclick="location.href='Orders.html'"><img src="Icons/Orders Icon.png" alt="" srcset=""><span>Orders</span></button> 
         <button onclick="location.href='Home Page.html'"><img src="Icons/Logout Icon.png" alt="" srcset=""><span>Logout</span></button> 
     </aside>
     <div id="main-frame" class="center">
@@ -412,42 +425,50 @@
                             <div class="product-card">
                                 <div class="img-whitebg">
                                     <img src="Pictures/Shoes1.png" alt="Shoes for men">
-                                    <div class="price">₱ 1,000 <button class="buy-button">Buy</button></div>
+                                    <div class="price">₱1,899 <button class="buy-button">Buy</button></div>
                                     
                                 </div>
                                 
-                                <div class="name">Shoes for men</div>
+                                <div class="name">AeroFlex Runner
+                                    <p>Lightweight running shoes ...</p>
+                                </div>
                                 
                                 
                             </div>
                             <div class="product-card">
                                 <div class="img-whitebg">
-                                    <img src="Pictures/Shoes1.png" alt="Shoes for men">
-                                    <div class="price">₱ 1,000 <button class="buy-button">Buy</button></div>
+                                    <img src="Pictures/Shoes2.png" alt="Shoes for men">
+                                    <div class="price">₱2,299 <button class="buy-button">Buy</button></div>
                                 </div>
                                 
-                                <div class="name">Shoes for men</div>
+                                <div class="name">StreetPulse Classic
+                                    <p>A stylish everyday sneaker ...</p>
+                                </div>
                                 
                                 
                             </div>
                             <div class="product-card">
                                 <div class="img-whitebg">
-                                    <img src="Pictures/Shoes1.png" alt="Shoes for men">
-                                    <div class="price">₱ 1,000 <button class="buy-button">Buy</button></div>
+                                    <img src="Pictures/Shoes3.png" alt="Shoes for men">
+                                    <div class="price">₱2,799 <button class="buy-button">Buy</button></div>
                                 </div>
                                 
-                                <div class="name">Shoes for men</div>
-                               
+                                <div class="name">VoltEdge Trainers
+                                    <p>High-performance training ...</p>
+                                </div>
+                                
                                 
                             </div>
                             <div class="product-card">
                                 <div class="img-whitebg">
-                                    <img src="Pictures/Shoes1.png" alt="Shoes for men">
-                                    <div class="price">₱ 1,000 <button class="buy-button">Buy</button></div>
+                                    <img src="Pictures/Shoes4.png" alt="Shoes for men">
+                                    <div class="price">₱1,599 <button class="buy-button">Buy</button></div>
                                 </div>
                                 
-                                <div class="name">Shoes for men</div>
-                               
+                                <div class="name">CloudStep Comfort
+                                    <p>Ultra-soft cushioned shoes ...</p>
+                                </div>
+                                
                                 
                             </div>
                         </div>
