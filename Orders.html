@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products</title>
+    <title>Orders</title>
     <link rel="stylesheet" href="style.css">
     <style>
         .main-content {
@@ -68,6 +68,30 @@
             background-color: #00A8E8;
             color: #F3F3F3;
         }
+        #options{
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 8px;
+        }
+        #options span{
+            cursor: pointer;
+            color: #6c6c6c;
+
+            transition: 0.3s all;
+        }
+        #options span:not(:first-child){
+            border-left: 1px solid black;
+            padding-left: 30px;
+        }
+        #options span:hover{
+            color: #00A8E8;
+        }
+        #options span.active{
+            color: black;
+            font-weight: bold;
+            text-decoration: underline;
+        }
         .product-card .picture-container{
             width: 100%;
             height: 180px;
@@ -84,22 +108,22 @@
             justify-content: space-between;
             align-items: center;
         }
-        .price-container .buy-button{
+        .price-container .cancel-button{
             padding: 5px 15px;
-            background: #12c56e;
+            background: #f75a5a;
             border: none;
             border-radius: 5px;
             color: #ffffff;
             font-weight: 600;
             cursor: pointer;
-            border: 1px solid #12c56e;
+            border: 1px solid #f75a5a;
 
             transition: 0.3s all;
         }
-        .price-container .buy-button:hover{
+        .price-container .cancel-button:hover{
             background-color: white;
-            color: #12c56e;
-            border: 1px solid #12c56e;
+            color: #f75a5a;
+            border: 1px solid #f75a5a;
         }
         .label-description{
             margin-top: 8px;
@@ -159,9 +183,9 @@
     <aside id="sidebar" class="sidebar minimized">
         <button id="Minmax_button" onclick="minmax_icon()"><svg class="icon"><use xlink:href="Icons/Menu.svg"></use></svg><span>Minimize</span></button> 
         <button onclick="location.href='Dashboard.html'"><svg class="icon"><use xlink:href="Icons/Dashboard.svg"></use></svg><span>Dashboard</span></button> 
-        <button onclick="location.href='Products.html'" class="sidebar-selected"><svg class="icon icon-selected"><use xlink:href="Icons/Package.svg"></use></svg><span>Products</span></button> 
+        <button onclick="location.href='Products.html'"><svg class="icon"><use xlink:href="Icons/Package.svg"></use></svg><span>Products</span></button> 
         <button onclick="location.href='Carts.html'"><svg class="icon"><use xlink:href="Icons/Cart.svg"></use></svg><span>Carts</span></button> 
-        <button onclick="location.href='Orders.html'"><svg class="icon"><use xlink:href="Icons/Orders.svg"></use></svg><span>Orders</span></button> 
+        <button onclick="location.href='Orders.html'" class="sidebar-selected"><svg class="icon icon-selected"><use xlink:href="Icons/Orders.svg"></use></svg><span>Orders</span></button> 
         <button onclick="location.href='Home Page.html'"><svg class="icon"><use xlink:href="Icons/Logout.svg"></use></svg><span>Logout</span></button> 
     </aside>
     <div id="main-frame">
@@ -188,6 +212,14 @@
                 </div>
             </div>
             <br><hr>
+            <div id="options">
+                <span>To Ship</span>
+                <span>To Pay</span>
+                <span class="active">To Receive</span>
+                <span>Completed</span>
+                <span>Cancelled</span>
+                <span>Returned</span>
+            </div>
             <div class="product-grid-container">
                 <div class="product-card">
                     <div class="picture-container">
@@ -197,10 +229,7 @@
                         <div class="price-container">
                             <div id="price">₱1,499</div>
                             <div>
-                                <button class="buy-button">Buy</button>
-                                <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
-                                </div>
+                                <button class="cancel-button">Cancel</button>
                             </div>
                             
                         </div>
@@ -218,10 +247,7 @@
                         <div class="price-container">
                             <div id="price">₱1,899</div>
                             <div>
-                                <button class="buy-button">Buy</button>
-                                <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
-                                </div>
+                                <button class="cancel-button">Cancel</button>
                             </div>
                         </div>
                     </div> 
@@ -238,10 +264,7 @@
                         <div class="price-container">
                             <div id="price">₱2,299</div>
                             <div>
-                                <button class="buy-button">Buy</button>
-                                <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
-                                </div>
+                                <button class="cancel-button">Cancel</button>
                             </div>
                         </div>
                     </div> 
@@ -258,10 +281,7 @@
                         <div class="price-container">
                             <div id="price">₱899</div>
                             <div>
-                                <button class="buy-button">Buy</button>
-                                <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
-                                </div>
+                                <button class="cancel-button">Cancel</button>
                             </div>
                         </div>
                     </div> 
@@ -278,10 +298,7 @@
                         <div class="price-container">
                             <div id="price">₱2,499</div>
                             <div>
-                                <button class="buy-button">Buy</button>
-                                <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
-                                </div>
+                                <button class="cancel-button">Cancel</button>
                             </div>
                         </div>
                     </div> 
@@ -298,10 +315,7 @@
                         <div class="price-container">
                             <div id="price">₱1,699</div>
                             <div>
-                                <button class="buy-button">Buy</button>
-                                <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
-                                </div>
+                                <button class="cancel-button">Cancel</button>
                             </div>
                         </div>
                     </div> 
@@ -318,10 +332,7 @@
                         <div class="price-container">
                             <div id="price">₱1,799</div>
                             <div>
-                                <button class="buy-button">Buy</button>
-                                <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
-                                </div>
+                                <button class="cancel-button">Cancel</button>
                             </div>
                         </div>
                     </div> 
@@ -330,171 +341,11 @@
                         <div id="description">Ultra-soft cushioning with a sleek design for all-day walking comfort.</div>
                     </div>
                 </div>
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/Shoes3.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱1,599</div>
-                            <div>
-                                <button class="buy-button">Buy</button>
-                                <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">Velocity Knit</div>
-                        <div id="description">Modern knit sneakers offering a snug fit and lightweight feel.</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/Jacket.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱2,199</div>
-                            <div>
-                                <button class="buy-button">Buy</button>
-                                <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">Apex Court Shoes</div>
-                        <div id="description">Designed for court sports with enhanced grip and ankle support.</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/Helmet.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱1,499</div>
-                            <div>
-                                <button class="buy-button">Buy</button>
-                                <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">RetroDash 90s</div>
-                        <div id="description">Vintage-inspired sneakers with bold colors and a nostalgic vibe.</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/Shoes4.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱2,799</div>
-                            <div>
-                                <button class="buy-button">Buy</button>
-                                <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">StormGuard Boots</div>
-                        <div id="description">Water-resistant boots built to handle rainy days and wet conditions.</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/Dress Shirt.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱1,099</div>
-                            <div>
-                                <button class="buy-button">Buy</button>
-                                <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">FlexMove Slip-ons</div>
-                        <div id="description">Easy-to-wear slip-on shoes with flexible soles for quick errands.</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/Shoes5.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱1,999</div>
-                            <div>
-                                <button class="buy-button">Buy</button>
-                                <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">PowerLift Trainers</div>
-                        <div id="description">Stable and supportive shoes ideal for weightlifting and strength training.</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/Sandals.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱1,899</div>
-                            <div>
-                                <button class="buy-button">Buy</button>
-                                <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">CloudStep Runners</div>
-                        <div id="description">Soft and airy running shoes that reduce foot fatigue during long walks.</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/Black Women Shoe - 900x451.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱1,699</div>
-                            <div>
-                                <button class="buy-button">Buy</button>
-                                <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">PrimeEdge Sneakers</div>
-                        <div id="description">Sleek and modern sneakers designed for both style and everyday comfort.</div>
-                    </div>
-                </div>
             </div>
             <br><hr>
             <div class="bottom-group">
                 <div><</div>
-                <div class="current-section">1</div>
+                <div>1</div>
                 <div>2</div>
                 <div>3</div>
                 <div>4</div>

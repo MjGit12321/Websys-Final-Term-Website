@@ -6,99 +6,6 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .navbar {
-            width: 100%;
-            background: #003459;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 24px;
-            box-sizing: border-box;
-        }
-        .navbar .brand {
-            font-size: 18px;
-            font-weight: 700;
-            letter-spacing: 0.03em;
-        }
-        .navbar .profile {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 14px;
-            font-weight: 600;
-        }
-        .navbar .profile .avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            overflow: hidden;
-        }
-        .navbar .profile .avatar img {
-            max-width: 100%;
-            max-height: 100%;
-            display: block;
-            object-fit: cover;
-        }
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Lora', serif;
-            
-        }
-
-        .sidebar {
-            position: absolute;
-            width: 140px;
-            margin-top: 52px;
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-        
-            box-sizing: border-box;
-            position: absolute;
-            left: 0px;
-            gap: 40px;
-            z-index: 1000;
-
-            transition: all 0.3s ease;
-        }
-
-        .sidebar button {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            background: #F3F3F3;
-            border: 2px solid #00A8E8;
-            border-radius: 0px 10px 10px 0px;
-            font-weight: 600;
-            padding: 20px 16px;
-            cursor: pointer;
-            gap: 10px;
-
-            transition: 0.3s all;
-        }
-        .sidebar button:hover{
-            border: 2px solid black !important;
-            background-color: #dadada !important;
-        }
-
-        .sidebar button img {
-            max-height: 24px;
-            width: auto;
-            display: inline-block;
-        }
-        .center{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        #main-frame {
-            height: 88.8vh;
-            position: relative;
-        }
         .main-content {
             width: 90%;
             height: 95%;
@@ -310,33 +217,26 @@
         .recent-card{
             grid-column: span 3;
         }
-        #sidebar.minimized {
-            width: 60px;
-            overflow: hidden;
-        }
-        #sidebar.minimized button span{
-            display: none;
-        }
-
+        
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="brand">Simple E-commerce System</div>
         <div class="profile">
-            <div class="avatar"> <img src="Icons/Person Icon.png" alt="" srcset=""></div>
+            <div class="avatar"> <svg class="icon"><use xlink:href="Icons/Person.svg"></use></svg> </div>
             <div>MJ Jade G. Piquero</div>
         </div>
     </nav>
     <aside id="sidebar" class="sidebar maximized">
-        <button id="Minmax_button" onclick="minmax_icon()"><img src="Icons/menu.png" alt="" srcset=""><span>Minimize</span></button> 
-        <button onclick="location.href='Dashboard.html'" class="sidebar-selected"><img src="Icons/Dashboard Icon.png" alt="" srcset=""><span>Dashboard</span></button> 
-        <button onclick="location.href='Products.html'"><img src="Icons/Product Icon.png" alt="" srcset=""><span>Products</span></button> 
-        <button onclick="location.href='Carts.html'"><img src="Icons/Cart Icon.png" alt="" srcset=""><span>Carts</span></button> 
-        <button onclick="location.href='Orders.html'"><img src="Icons/Orders Icon.png" alt="" srcset=""><span>Orders</span></button> 
-        <button onclick="location.href='Home Page.html'"><img src="Icons/Logout Icon.png" alt="" srcset=""><span>Logout</span></button> 
+        <button id="Minmax_button" onclick="minmax_icon()"><svg class="icon"><use xlink:href="Icons/Menu.svg"></use></svg><span>Minimize</span></button> 
+        <button onclick="location.href='Dashboard.html'" class="sidebar-selected"><svg class="icon icon-selected"><use xlink:href="Icons/Dashboard.svg"></use></svg><span>Dashboard</span></button> 
+        <button onclick="location.href='Products.html'"><svg class="icon"><use xlink:href="Icons/Package.svg"></use></svg><span>Products</span></button> 
+        <button onclick="location.href='Carts.html'"><svg class="icon"><use xlink:href="Icons/Cart.svg"></use></svg><span>Carts</span></button> 
+        <button onclick="location.href='Orders.html'"><svg class="icon"><use xlink:href="Icons/Orders.svg"></use></svg><span>Orders</span></button> 
+        <button onclick="location.href='Home Page.html'"><svg class="icon"><use xlink:href="Icons/Logout.svg"></use></svg><span>Logout</span></button> 
     </aside>
-    <div id="main-frame" class="center">
+    <div id="main-frame">
         <div class="main-content">
             <div class="content-grid">
                 <div class="row">

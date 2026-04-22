@@ -1,6 +1,7 @@
 body {
     background-color: #00A8E8;
     min-height: 97vh;
+    box-sizing: border-box
 
 }
 @import url('https://googleapis.com');
@@ -8,6 +9,10 @@ body {
 * {
     font-family: 'Lora', serif;
     user-select: none;
+}
+body{
+    margin: 0;
+    padding: 0;
 }
 h1{
     margin-top: 30px;
@@ -24,9 +29,119 @@ input[type="text"], input[type="password"], input[type="button"]{
     box-sizing: border-box;
 }
 
+/* Sidebar */
 .sidebar-selected {
     background-color: #003459 !important;
     border: 2px solid #003459 !important;
     color: white !important;
 }
+.icon-selected{
+    color: white !important;
+}
+#sidebar.minimized {
+    width: 60px;
+    overflow: hidden;
+}
+#sidebar.minimized button span{
+    display: none;
+}
+.icon{
+    height: 24px;
+    width: 24px;
 
+    color: black;
+}
+.sidebar {
+    position: fixed;
+    width: 140px;
+    margin-top: 106px;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+
+    box-sizing: border-box;
+    left: 0px;
+    gap: 40px;
+    z-index: 1000;
+
+    transition: all 0.3s ease;
+}
+
+.sidebar button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: #F3F3F3;
+    border: 2px solid #00A8E8;
+    border-radius: 0px 10px 10px 0px;
+    font-weight: 600;
+    padding: 20px 16px;
+    cursor: pointer;
+    gap: 10px;
+
+    transition: 0.3s all;
+}
+.sidebar button:hover{
+    border: 2px solid black !important;
+    background-color: #dadada !important;
+}
+
+.sidebar button img {
+    max-height: 24px;
+    width: auto;
+    display: inline-block;
+}
+
+/* Navbar */
+.navbar {
+    width: 100%;
+    background: #003459;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    box-sizing: border-box;
+
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+.navbar .brand {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+}
+.navbar .profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: 600;
+}
+.navbar .profile .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
+.navbar .profile .avatar img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#main-frame {
+    position: relative;
+    top: 90px;
+    padding: 0 0 20px 0;
+}
