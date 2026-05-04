@@ -133,22 +133,21 @@
             <h5>Sign up your account.</h5>
             <hr width="75%">
 
-            <div class="form">
+            <form class="form" method="post" action="php/sign_in_credentials.php">
                 <label for="Username">Username:</label><br>
-                <input type="text" class="login-input" id="Username" value=""> 
+                <input type="text" name="username" class="login-input" id="Username" value=""> 
                 <label for="Password">Password:</label><br>
                 <div class="input-with-icon">
-                    <input type="password" class="login-input" id="Password" value="">   
+                    <input type="password" name="password" class="login-input" id="Password" value="">   
                     <svg class="icon pass-icon"><use xlink:href="Icons/close.svg"></use></svg> 
                 </div>
                 <label for="Con-Password">Confirm Password:</label><br>
                 <div class="input-with-icon">
-                    <input type="password" class="login-input" id="Con-Password" value="">   
+                    <input type="password" name="confirm_password" class="login-input" id="Con-Password" value="">   
                     <svg class="icon pass-icon"><use xlink:href="Icons/close.svg"></use></svg> 
                 </div>
-
-                <input type="button" class="login-input" id="LoginBtn" value="Sign up" onclick="location.href='Log in.php'">  
-            </div>
+                <input type="submit" class="login-input" id="LoginBtn" value="Sign up" onclick="location.href='Log in.php'">  
+            </form>
 
             <p>or log in using</p>
             <div class="social-icons">

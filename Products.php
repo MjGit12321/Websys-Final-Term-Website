@@ -41,308 +41,46 @@
             </div>
             <br><hr>
             <div class="product-grid-container">
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/Shoes1.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱1,499</div>
-                            <div>
-                                <button class="buy-button">Buy</button>
+                <?php
+                    include 'php/connect_to_db.php';
+
+                    $sql = "SELECT * FROM producttbl";
+                    $result = mysqli_query($conn, $sql);
+                    ?>
+
+                    <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+
+                    <div class="product-card">
+
+                        <div class="picture-container">
+                            <div class="picture center">
+                                <img src="<?php echo $row['image']; ?>" alt="">
+                            </div>
+
+                            <div class="price-container">
+                                <div id="price">₱<?php echo $row['price']; ?></div>
+
                                 <div>
-                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
+                                    <button class="buy-button">Buy</button>
+
+                                    <div>
+                                        <svg class="icon">
+                                            <use xlink:href="Icons/Add to cart.svg"></use>
+                                        </svg>
+                                    </div>
                                 </div>
 
                             </div>
-                            
                         </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">UrbanFlex Runner</div>
-                        <div id="description">Lightweight running shoes with breathable mesh and flexible sole for everyday comfort.</div>
+
+                        <div class="label-description">
+                            <div class="label"><?php echo $row['product_name']; ?></div>
+                            <div id="description"><?php echo $row['description']; ?></div>
+                        </div>
+
                     </div>
-                </div>
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/Bag.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱1,899</div>
-                            <div>
-                                <button class="buy-button">Buy</button>
-                                <div>
-                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">StreetCore High Tops</div>
-                        <div id="description">Stylish high-cut sneakers designed for casual wear with durable rubber outsole.</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/Women Shoe.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱2,299</div>
-                            <div>
-                                <button class="buy-button">Buy</button>
-                                <div>
-                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">AirStride Pro</div>
-                        <div id="description">Cushioned performance shoes built for long runs and maximum shock absorption.</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/Watch.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱899</div>
-                            <div>
-                                <button class="buy-button">Buy</button>
-                                <div>
-                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">Classic Canvas Low</div>
-                        <div id="description">Minimalist canvas sneakers perfect for daily use and easy outfit matching.</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/TShirt.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱2,499</div>
-                            <div>
-                                <button class="buy-button">Buy</button>
-                                <div>
-                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">TrailBlaze XT</div>
-                        <div id="description">Rugged outdoor shoes with strong grip, ideal for hiking and rough terrain.</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/Sandals.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱1,699</div>
-                            <div>
-                                <button class="buy-button">Buy</button>
-                                <div>
-                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">NeoSport Trainers</div>
-                        <div id="description">Versatile training shoes for gym workouts and active lifestyles.</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/Shoes2.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱1,799</div>
-                            <div>
-                                <button class="buy-button">Buy</button>
-                                <div>
-                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">GlideMax Comfort</div>
-                        <div id="description">Ultra-soft cushioning with a sleek design for all-day walking comfort.</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/Shoes3.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱1,599</div>
-                            <div>
-                                <button class="buy-button">Buy</button>
-                                <div>
-                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">Velocity Knit</div>
-                        <div id="description">Modern knit sneakers offering a snug fit and lightweight feel.</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/Jacket.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱2,199</div>
-                            <div>
-                                <button class="buy-button">Buy</button>
-                                <div>
-                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">Apex Court Shoes</div>
-                        <div id="description">Designed for court sports with enhanced grip and ankle support.</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/Helmet.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱1,499</div>
-                            <div>
-                                <button class="buy-button">Buy</button>
-                                <div>
-                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">RetroDash 90s</div>
-                        <div id="description">Vintage-inspired sneakers with bold colors and a nostalgic vibe.</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/Shoes4.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱2,799</div>
-                            <div>
-                                <button class="buy-button">Buy</button>
-                                <div>
-                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">StormGuard Boots</div>
-                        <div id="description">Water-resistant boots built to handle rainy days and wet conditions.</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/Dress Shirt.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱1,099</div>
-                            <div>
-                                <button class="buy-button">Buy</button>
-                                <div>
-                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">FlexMove Slip-ons</div>
-                        <div id="description">Easy-to-wear slip-on shoes with flexible soles for quick errands.</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/Shoes5.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱1,999</div>
-                            <div>
-                                <button class="buy-button">Buy</button>
-                                <div>
-                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">PowerLift Trainers</div>
-                        <div id="description">Stable and supportive shoes ideal for weightlifting and strength training.</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/Sandals.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱1,899</div>
-                            <div>
-                                <button class="buy-button">Buy</button>
-                                <div>
-                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">CloudStep Runners</div>
-                        <div id="description">Soft and airy running shoes that reduce foot fatigue during long walks.</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/Black Women Shoe - 900x451.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱1,699</div>
-                            <div>
-                                <button class="buy-button">Buy</button>
-                                <div>
-                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">PrimeEdge Sneakers</div>
-                        <div id="description">Sleek and modern sneakers designed for both style and everyday comfort.</div>
-                    </div>
-                </div>
+
+                <?php } ?>
             </div>
             <br><hr>
             <div class="bottom-group">
