@@ -10,3 +10,4 @@ function minmax_icon(){
         sidebar.classList.add("maximized");
     }
 }
+

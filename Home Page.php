@@ -40,7 +40,7 @@
         <img src="Pictures/Home Page Pic.png" height="331px" width="586px" alt="">
         <h1>“Shop smart, save more, and get your <br> 
 favorite products delivered fast.”</h1>
-        <button type="button" onclick="location.href='Log in.html'">Shop Now!</button>
+        <button type="button" onclick="location.href='Log in.php'">Shop Now!</button>
     </div>
 </body>
 </html>

@@ -142,7 +142,7 @@
             <h5>Login your account.</h5>
             <hr width="75%">
 
-            <div class="form">
+            <div class="form" method>
                 <label for="Username">Username:</label><br>
                 <input type="text" class="login-input" id="Username" value=""> 
                 <label for="Password">Password:</label><br>

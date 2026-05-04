@@ -210,21 +210,8 @@
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="brand">Simple E-commerce System</div>
-        <div class="profile">
-            <div class="avatar"><svg class="icon white"><use xlink:href="Icons/Person.svg"></use></svg> </div>
-            <div>MJ Jade G. Piquero</div>
-        </div>
-    </nav>
-    <aside id="sidebar" class="sidebar maximized">
-        <button id="Minmax_button" onclick="minmax_icon()"><svg class="icon"><use xlink:href="Icons/Menu.svg"></use></svg><span>Minimize</span></button> 
-        <button onclick="location.href='Dashboard.php'" class="sidebar-selected"><svg class="icon icon-selected"><use xlink:href="Icons/Dashboard.svg"></use></svg><span>Dashboard</span></button> 
-        <button onclick="location.href='Products.php'"><svg class="icon"><use xlink:href="Icons/Package.svg"></use></svg><span>Products</span></button> 
-        <button onclick="location.href='Carts.php'"><svg class="icon"><use xlink:href="Icons/Cart.svg"></use></svg><span>Carts</span></button> 
-        <button onclick="location.href='Orders.php'"><svg class="icon"><use xlink:href="Icons/Orders.svg"></use></svg><span>Orders</span></button> 
-        <button onclick="location.href='Home Page.php'"><svg class="icon"><use xlink:href="Icons/Logout.svg"></use></svg><span>Logout</span></button> 
-    </aside>
+    <?php include 'components/heder.php'; ?>
+    <?php include 'components/sidebar.php'; ?>
     <div id="main-frame">
         <div class="main-content">
             <div class="content-grid">
