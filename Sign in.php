@@ -3,17 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="css/style.css">
     <style>
-        .center-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            
-        }
-        #main-frame {
+        #dashboard-frame {
             display: flex;
             width: 771px;
             height: 476px;
@@ -22,7 +15,7 @@
             box-shadow: 0 24px 60px rgba(0, 0, 0, 0.15);
             background-color: #f3f3f3;
         }
-        #left-cover{
+        #right-cover{
             position: relative;
             border-radius: 22px;
             background-color: #003459;
@@ -32,56 +25,49 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-       
-            padding: 20px;
+            
+            padding: 24px;
             box-sizing: border-box;
         }
-        #left-cover img {
+        #right-cover img {
             max-width: 80%;
             max-height: 55%;
             object-fit: contain;
         }
-        #left-cover h2 {
+        #right-cover h2 {
             color: white;
             text-align: center;
-            
+          
             line-height: 1.4;
         }
-        #SignUpBtn {
-            background-color: #003459;
+        #CoverLoginBtn {
+            background-color: transparent;
             color: white;
             border: 2px solid white;
             border-radius: 10px;
-            padding: 10px 24px;
+            padding: 10px 28px;
             cursor: pointer;
             font-size: 14px;
             width: 70%;
+            margin-top: 10px;
 
             transition: 0.3s all;
         }
-        #SignUpBtn:hover{
-            background-color: #f3f3f3;
-            color: black;
-        }
-        #right-content{
+        #left-content{
             position: relative;
             height: 100%;
             width: 50%;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            padding-top: 40px;
+            margin: 10px 0;
 
             text-align: center;
         }
 
-        #main-frame #right-content .form{
+        #dashboard-frame #left-content .form{
             width: 70%;
             height: fit-content;
 
             text-align: left;
-            margin: 0 auto;
+            margin-left: 15%;
             margin-top: 10px;
             
         }
@@ -100,26 +86,25 @@
             position: relative;
             width: 100%;
         }
-        #LoginBtn:hover{
-            background-color:#003459;
-            color: #f3f3f3;
-        }
         #LoginBtn{
             height: 40px;
             background-color: #00A8E8;
             color: white;
             border: none;
-            font-size: 16px;
-            font-weight: bold;
+            font-size: 15px;
             text-align: center;
             cursor: pointer;
             padding-right: 0;
-            margin: 20px 0 0 0;
 
             transition: 0.3s all;
         }
+
+        #LoginBtn:hover{
+            background-color: #003459;
+            color: white;
+        }
         p{
-            margin: 16px 0;
+            margin: 10px 0;
         }
         .pass-icon{
             position: absolute;
@@ -135,18 +120,17 @@
         .social-icons img:last-child {
             margin-right: 0;
         }
+        #CoverLoginBtn:hover{
+            background-color: #f3f3f3;
+            color: black;
+        }
     </style>
 </head>
-<body class="center-content">
-    <div id="main-frame">
-        <div id="left-cover">
-            <img src="Pictures/Log in pic.png" alt="" srcset="">
-            <h2>Don't have an account?</h2>
-            <button id="SignUpBtn" onclick="location.href='Sign in.html'">Sign Up</button>
-        </div>
-        <div id="right-content">
-            <h1>Welcome back!</h1>
-            <h5>Login your account.</h5>
+<body class="center">
+    <div id="dashboard-frame">
+        <div id="left-content">
+            <h1>Welcome!</h1>
+            <h5>Sign up your account.</h5>
             <hr width="75%">
 
             <div class="form">
@@ -155,19 +139,29 @@
                 <label for="Password">Password:</label><br>
                 <div class="input-with-icon">
                     <input type="password" class="login-input" id="Password" value="">   
-                    <img src="Icons/eye close.png" class="pass-icon" width="20px" height="20px" alt="Toggle password visibility"> 
+                    <svg class="icon pass-icon"><use xlink:href="Icons/close.svg"></use></svg> 
+                </div>
+                <label for="Con-Password">Confirm Password:</label><br>
+                <div class="input-with-icon">
+                    <input type="password" class="login-input" id="Con-Password" value="">   
+                    <svg class="icon pass-icon"><use xlink:href="Icons/close.svg"></use></svg> 
                 </div>
 
-                <input type="button" class="login-input" id="LoginBtn" value="Log in" onclick="location.href='Dashboard.html'">  
+                <input type="button" class="login-input" id="LoginBtn" value="Sign up" onclick="location.href='Log in.php'">  
             </div>
 
-            <p>or sign in using</p>
+            <p>or log in using</p>
             <div class="social-icons">
-                <img src="Icons/fb.svg" width="40px" height="40px" alt="" srcset="">
-                <img src="Icons/gmail.svg" width="40px" height="40px" alt="" srcset="">
-                <img src="Icons/tiktok.png" width="40px" height="40px" alt="" srcset="">
+                <svg class="icon"><use xlink:href="Icons/FB.svg"></use></svg>
+                <svg class="icon"><use xlink:href="Icons/Gmail.svg"></use></svg>
+                <svg class="icon"><use xlink:href="Icons/Tiktok.svg"></use></svg>
             </div>
             
+        </div>
+        <div id="right-cover">
+            <img src="Pictures/Sign in pic.png" alt="" srcset="">
+            <h2>Already have an account?</h2>
+            <button id="CoverLoginBtn" onclick="location.href='Log in.php'">Login</button>
         </div>
     </div>
 </body>

@@ -1,168 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE php>
+<php lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .main-content {
-            width: 90%;
-            min-height: 100%;
-            background: #F3F3F3;
-            margin: 0 auto;
-            padding: 24px;
-            border-radius: 10px;
-            box-sizing: border-box;
-        }
-        .sort{
-            padding: 3px;
-            border: 1px solid #00A8E8;
-            border-radius: 5px;
-        }
-        .top-group{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        #search-input{
-            padding: 5px;
-            width: 200px;
-            border: 1px solid #00A8E8;
-            border-radius: 5px;
-        }
-        #search-box{
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .product-grid-container{
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
-        }
-        .product-card{
-            background: #ffffff;
-            border: 1px solid #00A8E8;
-            border-radius: 10px;
-            padding: 16px;
-            box-sizing: border-box;
-            height: 250px;
-        }
-        .bottom-group{
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        .bottom-group div{
-            padding: 8px 12px;
-            border: 1px solid #00A8E8;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.7rem;
-            font-weight: bold;
-
-            transition: 0.3s all;
-        }
-        .bottom-group div:hover{
-            background-color: #00A8E8;
-            color: #F3F3F3;
-        }
-        .product-card .picture-container{
-            width: 100%;
-            height: 180px;
-            background: #efefef;
-            border-radius: 5px;
-            position: relative;
-        }
-        .price-container{
-            position: absolute;
-            bottom: 8px;
-            left: 10px;
-            right: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .price-container .buy-button{
-            padding: 5px 15px;
-            background: #12c56e;
-            border: none;
-            border-radius: 5px;
-            color: #ffffff;
-            font-weight: 600;
-            cursor: pointer;
-            border: 1px solid #12c56e;
-
-            transition: 0.3s all;
-        }
-        .price-container .buy-button:hover{
-            background-color: white;
-            color: #12c56e;
-            border: 1px solid #12c56e;
-        }
-        .label-description{
-            margin-top: 8px;
-        }
-        .label-description #description{
-            font-size: 0.7rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .label-description:hover{
-            text-decoration: underline;
-            cursor: pointer;
-        }
-        .picture-container{
-            position: relative;
-        }
-        .picture-container .picture{
-            width: 100%;
-            height: 76%;
-            overflow:hidden;
-
-        }
-        .picture-container .picture img{
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .bottom-group .current-section{
-            background-color: #00A8E8;
-            color: #F3F3F3;
-        }
-        .price-container div{
-            display: flex;
-        }
-        .price-container div img{
-            width: 24px;
-            height: 24px;
-        }
-        .price-container div div{
-            border-left: 1px solid black;
-            margin-left: 5px;
-            padding-left: 5px;
-
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <nav class="navbar">
         <div class="brand">Simple E-commerce System</div>
         <div class="profile">
-            <div class="avatar"> <img src="Icons/Person Icon.png" alt="" srcset=""></div>
+            <div class="avatar"><svg class="icon white"><use xlink:href="Icons/Person.svg"></use></svg> </div>
             <div>MJ Jade G. Piquero</div>
         </div>
     </nav>
     <aside id="sidebar" class="sidebar minimized">
         <button id="Minmax_button" onclick="minmax_icon()"><svg class="icon"><use xlink:href="Icons/Menu.svg"></use></svg><span>Minimize</span></button> 
-        <button onclick="location.href='Dashboard.html'"><svg class="icon"><use xlink:href="Icons/Dashboard.svg"></use></svg><span>Dashboard</span></button> 
-        <button onclick="location.href='Products.html'" class="sidebar-selected"><svg class="icon icon-selected"><use xlink:href="Icons/Package.svg"></use></svg><span>Products</span></button> 
-        <button onclick="location.href='Carts.html'"><svg class="icon"><use xlink:href="Icons/Cart.svg"></use></svg><span>Carts</span></button> 
-        <button onclick="location.href='Orders.html'"><svg class="icon"><use xlink:href="Icons/Orders.svg"></use></svg><span>Orders</span></button> 
-        <button onclick="location.href='Home Page.html'"><svg class="icon"><use xlink:href="Icons/Logout.svg"></use></svg><span>Logout</span></button> 
+        <button onclick="location.href='Dashboard.php'"><svg class="icon"><use xlink:href="Icons/Dashboard.svg"></use></svg><span>Dashboard</span></button> 
+        <button onclick="location.href='Products.php'" class="sidebar-selected"><svg class="icon icon-selected"><use xlink:href="Icons/Package.svg"></use></svg><span>Products</span></button> 
+        <button onclick="location.href='Carts.php'"><svg class="icon"><use xlink:href="Icons/Cart.svg"></use></svg><span>Carts</span></button> 
+        <button onclick="location.href='Orders.php'"><svg class="icon"><use xlink:href="Icons/Orders.svg"></use></svg><span>Orders</span></button> 
+        <button onclick="location.href='Home Page.php'"><svg class="icon"><use xlink:href="Icons/Logout.svg"></use></svg><span>Logout</span></button> 
     </aside>
     <div id="main-frame">
         <div class="main-content">
@@ -199,8 +57,9 @@
                             <div>
                                 <button class="buy-button">Buy</button>
                                 <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
+                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
                                 </div>
+
                             </div>
                             
                         </div>
@@ -220,7 +79,7 @@
                             <div>
                                 <button class="buy-button">Buy</button>
                                 <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
+                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
                                 </div>
                             </div>
                         </div>
@@ -240,7 +99,7 @@
                             <div>
                                 <button class="buy-button">Buy</button>
                                 <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
+                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
                                 </div>
                             </div>
                         </div>
@@ -260,7 +119,7 @@
                             <div>
                                 <button class="buy-button">Buy</button>
                                 <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
+                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
                                 </div>
                             </div>
                         </div>
@@ -280,7 +139,7 @@
                             <div>
                                 <button class="buy-button">Buy</button>
                                 <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
+                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
                                 </div>
                             </div>
                         </div>
@@ -300,7 +159,7 @@
                             <div>
                                 <button class="buy-button">Buy</button>
                                 <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
+                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
                                 </div>
                             </div>
                         </div>
@@ -320,7 +179,7 @@
                             <div>
                                 <button class="buy-button">Buy</button>
                                 <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
+                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
                                 </div>
                             </div>
                         </div>
@@ -340,7 +199,7 @@
                             <div>
                                 <button class="buy-button">Buy</button>
                                 <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
+                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
                                 </div>
                             </div>
                         </div>
@@ -360,7 +219,7 @@
                             <div>
                                 <button class="buy-button">Buy</button>
                                 <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
+                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
                                 </div>
                             </div>
                         </div>
@@ -380,7 +239,7 @@
                             <div>
                                 <button class="buy-button">Buy</button>
                                 <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
+                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
                                 </div>
                             </div>
                         </div>
@@ -400,7 +259,7 @@
                             <div>
                                 <button class="buy-button">Buy</button>
                                 <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
+                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
                                 </div>
                             </div>
                         </div>
@@ -420,7 +279,7 @@
                             <div>
                                 <button class="buy-button">Buy</button>
                                 <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
+                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
                                 </div>
                             </div>
                         </div>
@@ -440,7 +299,7 @@
                             <div>
                                 <button class="buy-button">Buy</button>
                                 <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
+                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
                                 </div>
                             </div>
                         </div>
@@ -460,7 +319,7 @@
                             <div>
                                 <button class="buy-button">Buy</button>
                                 <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
+                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
                                 </div>
                             </div>
                         </div>
@@ -480,7 +339,7 @@
                             <div>
                                 <button class="buy-button">Buy</button>
                                 <div>
-                                    <img src="Icons/Add to cart.png" alt="" srcset="">
+                                    <svg class="icon"><use xlink:href="Icons/Add to cart.svg"></use></svg>
                                 </div>
                             </div>
                         </div>
@@ -506,4 +365,4 @@
 
     <script src="main.js"></script>
 </body>
-</html>
+</php>

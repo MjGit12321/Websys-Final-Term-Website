@@ -1,192 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE.php>
+.php lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orders</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .main-content {
-            width: 90%;
-            min-height: 100%;
-            background: #F3F3F3;
-            margin: 0 auto;
-            padding: 24px;
-            border-radius: 10px;
-            box-sizing: border-box;
-        }
-        .sort{
-            padding: 3px;
-            border: 1px solid #00A8E8;
-            border-radius: 5px;
-        }
-        .top-group{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        #search-input{
-            padding: 5px;
-            width: 200px;
-            border: 1px solid #00A8E8;
-            border-radius: 5px;
-        }
-        #search-box{
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .product-grid-container{
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
-        }
-        .product-card{
-            background: #ffffff;
-            border: 1px solid #00A8E8;
-            border-radius: 10px;
-            padding: 16px;
-            box-sizing: border-box;
-            height: 250px;
-        }
-        .bottom-group{
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        .bottom-group div{
-            padding: 8px 12px;
-            border: 1px solid #00A8E8;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.7rem;
-            font-weight: bold;
-
-            transition: 0.3s all;
-        }
-        .bottom-group div:hover{
-            background-color: #00A8E8;
-            color: #F3F3F3;
-        }
-        #options{
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 8px;
-        }
-        #options span{
-            cursor: pointer;
-            color: #6c6c6c;
-
-            transition: 0.3s all;
-        }
-        #options span:not(:first-child){
-            border-left: 1px solid black;
-            padding-left: 30px;
-        }
-        #options span:hover{
-            color: #00A8E8;
-        }
-        #options span.active{
-            color: black;
-            font-weight: bold;
-            text-decoration: underline;
-        }
-        .product-card .picture-container{
-            width: 100%;
-            height: 180px;
-            background: #efefef;
-            border-radius: 5px;
-            position: relative;
-        }
-        .price-container{
-            position: absolute;
-            bottom: 8px;
-            left: 10px;
-            right: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .price-container .cancel-button{
-            padding: 5px 15px;
-            background: #f75a5a;
-            border: none;
-            border-radius: 5px;
-            color: #ffffff;
-            font-weight: 600;
-            cursor: pointer;
-            border: 1px solid #f75a5a;
-
-            transition: 0.3s all;
-        }
-        .price-container .cancel-button:hover{
-            background-color: white;
-            color: #f75a5a;
-            border: 1px solid #f75a5a;
-        }
-        .label-description{
-            margin-top: 8px;
-        }
-        .label-description #description{
-            font-size: 0.7rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .label-description:hover{
-            text-decoration: underline;
-            cursor: pointer;
-        }
-        .picture-container{
-            position: relative;
-        }
-        .picture-container .picture{
-            width: 100%;
-            height: 76%;
-            overflow:hidden;
-
-        }
-        .picture-container .picture img{
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .bottom-group .current-section{
-            background-color: #00A8E8;
-            color: #F3F3F3;
-        }
-        .price-container div{
-            display: flex;
-        }
-        .price-container div img{
-            width: 24px;
-            height: 24px;
-        }
-        .price-container div div{
-            border-left: 1px solid black;
-            margin-left: 5px;
-            padding-left: 5px;
-
-            cursor: pointer;
-        }
-    </style>
+    <title>Carts</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <nav class="navbar">
         <div class="brand">Simple E-commerce System</div>
         <div class="profile">
-            <div class="avatar"> <img src="Icons/Person Icon.png" alt="" srcset=""></div>
+            <div class="avatar"><svg class="icon white"><use xlink:href="Icons/Person.svg"></use></svg> </div>
             <div>MJ Jade G. Piquero</div>
         </div>
     </nav>
     <aside id="sidebar" class="sidebar minimized">
         <button id="Minmax_button" onclick="minmax_icon()"><svg class="icon"><use xlink:href="Icons/Menu.svg"></use></svg><span>Minimize</span></button> 
-        <button onclick="location.href='Dashboard.html'"><svg class="icon"><use xlink:href="Icons/Dashboard.svg"></use></svg><span>Dashboard</span></button> 
-        <button onclick="location.href='Products.html'"><svg class="icon"><use xlink:href="Icons/Package.svg"></use></svg><span>Products</span></button> 
-        <button onclick="location.href='Carts.html'"><svg class="icon"><use xlink:href="Icons/Cart.svg"></use></svg><span>Carts</span></button> 
-        <button onclick="location.href='Orders.html'" class="sidebar-selected"><svg class="icon icon-selected"><use xlink:href="Icons/Orders.svg"></use></svg><span>Orders</span></button> 
-        <button onclick="location.href='Home Page.html'"><svg class="icon"><use xlink:href="Icons/Logout.svg"></use></svg><span>Logout</span></button> 
+        <button onclick="location.href='Dashboard.php'"><svg class="icon"><use xlink:href="Icons/Dashboard.svg"></use></svg><span>Dashboard</span></button> 
+        <button onclick="location.href='Products.php'"><svg class="icon"><use xlink:href="Icons/Package.svg"></use></svg><span>Products</span></button> 
+        <button onclick="location.href='Carts.php'" class="sidebar-selected"><svg class="icon icon-selected"><use xlink:href="Icons/Cart.svg"></use></svg><span>Carts</span></button> 
+        <button onclick="location.href='Orders.php'"><svg class="icon"><use xlink:href="Icons/Orders.svg"></use></svg><span>Orders</span></button> 
+        <button onclick="location.href='Home Page.php'"><svg class="icon"><use xlink:href="Icons/Logout.svg"></use></svg><span>Logout</span></button> 
     </aside>
     <div id="main-frame">
         <div class="main-content">
@@ -212,14 +46,6 @@
                 </div>
             </div>
             <br><hr>
-            <div id="options">
-                <span>To Ship</span>
-                <span>To Pay</span>
-                <span class="active">To Receive</span>
-                <span>Completed</span>
-                <span>Cancelled</span>
-                <span>Returned</span>
-            </div>
             <div class="product-grid-container">
                 <div class="product-card">
                     <div class="picture-container">
@@ -229,7 +55,10 @@
                         <div class="price-container">
                             <div id="price">₱1,499</div>
                             <div>
-                                <button class="cancel-button">Cancel</button>
+                                <button class="buy-button">Buy</button>
+                                <div>
+                                    <svg class="icon"><use xlink:href="Icons/trash.svg"></use></svg>
+                                </div>
                             </div>
                             
                         </div>
@@ -242,12 +71,15 @@
                 <div class="product-card">
                     <div class="picture-container">
                         <div class="picture center">
-                            <img src="Pictures/Bag.png" alt="">
+                            <img src="Pictures/Shoes2.png" alt="">
                         </div>
                         <div class="price-container">
                             <div id="price">₱1,899</div>
                             <div>
-                                <button class="cancel-button">Cancel</button>
+                                <button class="buy-button">Buy</button>
+                                <div>
+                                    <svg class="icon"><use xlink:href="Icons/trash.svg"></use></svg>
+                                </div>
                             </div>
                         </div>
                     </div> 
@@ -259,12 +91,15 @@
                 <div class="product-card">
                     <div class="picture-container">
                         <div class="picture center">
-                            <img src="Pictures/Women Shoe.png" alt="">
+                            <img src="Pictures/Shoes3.png" alt="">
                         </div>
                         <div class="price-container">
                             <div id="price">₱2,299</div>
                             <div>
-                                <button class="cancel-button">Cancel</button>
+                                <button class="buy-button">Buy</button>
+                                <div>
+                                    <svg class="icon"><use xlink:href="Icons/trash.svg"></use></svg>
+                                </div>
                             </div>
                         </div>
                     </div> 
@@ -276,12 +111,15 @@
                 <div class="product-card">
                     <div class="picture-container">
                         <div class="picture center">
-                            <img src="Pictures/Watch.png" alt="">
+                            <img src="Pictures/Shoes4.png" alt="">
                         </div>
                         <div class="price-container">
                             <div id="price">₱899</div>
                             <div>
-                                <button class="cancel-button">Cancel</button>
+                                <button class="buy-button">Buy</button>
+                                <div>
+                                    <svg class="icon"><use xlink:href="Icons/trash.svg"></use></svg>
+                                </div>
                             </div>
                         </div>
                     </div> 
@@ -293,12 +131,15 @@
                 <div class="product-card">
                     <div class="picture-container">
                         <div class="picture center">
-                            <img src="Pictures/TShirt.png" alt="">
+                            <img src="Pictures/Shoes5.png" alt="">
                         </div>
                         <div class="price-container">
                             <div id="price">₱2,499</div>
                             <div>
-                                <button class="cancel-button">Cancel</button>
+                                <button class="buy-button">Buy</button>
+                                <div>
+                                    <svg class="icon"><use xlink:href="Icons/trash.svg"></use></svg>
+                                </div>
                             </div>
                         </div>
                     </div> 
@@ -310,12 +151,15 @@
                 <div class="product-card">
                     <div class="picture-container">
                         <div class="picture center">
-                            <img src="Pictures/Sandals.png" alt="">
+                            <img src="Pictures/Bag.png" alt="">
                         </div>
                         <div class="price-container">
                             <div id="price">₱1,699</div>
                             <div>
-                                <button class="cancel-button">Cancel</button>
+                                <button class="buy-button">Buy</button>
+                                <div>
+                                   <svg class="icon"><use xlink:href="Icons/trash.svg"></use></svg>
+                                </div>
                             </div>
                         </div>
                     </div> 
@@ -327,12 +171,15 @@
                 <div class="product-card">
                     <div class="picture-container">
                         <div class="picture center">
-                            <img src="Pictures/Shoes2.png" alt="">
+                            <img src="Pictures/Sandals.png" alt="">
                         </div>
                         <div class="price-container">
                             <div id="price">₱1,799</div>
                             <div>
-                                <button class="cancel-button">Cancel</button>
+                                <button class="buy-button">Buy</button>
+                                <div>
+                                    <svg class="icon"><use xlink:href="Icons/trash.svg"></use></svg>
+                                </div>
                             </div>
                         </div>
                     </div> 
@@ -341,11 +188,72 @@
                         <div id="description">Ultra-soft cushioning with a sleek design for all-day walking comfort.</div>
                     </div>
                 </div>
+                <div class="product-card">
+                    <div class="picture-container">
+                        <div class="picture center">
+                            <img src="Pictures/Gloves.png" alt="">
+                        </div>
+                        <div class="price-container">
+                            <div id="price">₱1,599</div>
+                            <div>
+                                <button class="buy-button">Buy</button>
+                                <div>
+                                    <svg class="icon"><use xlink:href="Icons/trash.svg"></use></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="label-description">
+                        <div class="label">Velocity Knit</div>
+                        <div id="description">Modern knit sneakers offering a snug fit and lightweight feel.</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="picture-container">
+                        <div class="picture center">
+                            <img src="Pictures/Helmet.png" alt="">
+                        </div>
+                        <div class="price-container">
+                            <div id="price">₱2,199</div>
+                            <div>
+                                <button class="buy-button">Buy</button>
+                                <div>
+                                    <svg class="icon"><use xlink:href="Icons/trash.svg"></use></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="label-description">
+                        <div class="label">Apex Court Shoes</div>
+                        <div id="description">Designed for court sports with enhanced grip and ankle support.</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="picture-container">
+                        <div class="picture center">
+                            <img src="Pictures/Black Women Shoe - 900x451.png" alt="">
+                        </div>
+                        <div class="price-container">
+                            <div id="price">₱1,499</div>
+                            <div>
+                                <button class="buy-button">Buy</button>
+                                <div>
+                                    <svg class="icon"><use xlink:href="Icons/trash.svg"></use></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="label-description">
+                        <div class="label">RetroDash 90s</div>
+                        <div id="description">Vintage-inspired sneakers with bold colors and a nostalgic vibe.</div>
+                    </div>
+                </div>
+                
             </div>
             <br><hr>
             <div class="bottom-group">
                 <div><</div>
-                <div>1</div>
+                <div class="current-section">1</div>
                 <div>2</div>
                 <div>3</div>
                 <div>4</div>
@@ -357,4 +265,4 @@
 
     <script src="main.js"></script>
 </body>
-</html>
+<.php>

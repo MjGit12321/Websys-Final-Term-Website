@@ -1,20 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE php>
+<php lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <style>
-        .main-content {
-            width: 90%;
-            height: 95%;
-            background: #F3F3F3;
-            margin: 0 auto;
-            padding: 18px;
-            border-radius: 10px;
-            box-sizing: border-box;
-        }
         .content-grid {
             display: grid;
             gap: 16px;
@@ -154,7 +145,6 @@
             box-shadow: 0 12px 20px rgba(0,0,0,0.07);
             
             color: #F3F3F3;
-            height: 208px;
         }
         .product-card img {
             width: 100%;
@@ -217,24 +207,23 @@
         .recent-card{
             grid-column: span 3;
         }
-        
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="brand">Simple E-commerce System</div>
         <div class="profile">
-            <div class="avatar"> <svg class="icon"><use xlink:href="Icons/Person.svg"></use></svg> </div>
+            <div class="avatar"><svg class="icon white"><use xlink:href="Icons/Person.svg"></use></svg> </div>
             <div>MJ Jade G. Piquero</div>
         </div>
     </nav>
     <aside id="sidebar" class="sidebar maximized">
         <button id="Minmax_button" onclick="minmax_icon()"><svg class="icon"><use xlink:href="Icons/Menu.svg"></use></svg><span>Minimize</span></button> 
-        <button onclick="location.href='Dashboard.html'" class="sidebar-selected"><svg class="icon icon-selected"><use xlink:href="Icons/Dashboard.svg"></use></svg><span>Dashboard</span></button> 
-        <button onclick="location.href='Products.html'"><svg class="icon"><use xlink:href="Icons/Package.svg"></use></svg><span>Products</span></button> 
-        <button onclick="location.href='Carts.html'"><svg class="icon"><use xlink:href="Icons/Cart.svg"></use></svg><span>Carts</span></button> 
-        <button onclick="location.href='Orders.html'"><svg class="icon"><use xlink:href="Icons/Orders.svg"></use></svg><span>Orders</span></button> 
-        <button onclick="location.href='Home Page.html'"><svg class="icon"><use xlink:href="Icons/Logout.svg"></use></svg><span>Logout</span></button> 
+        <button onclick="location.href='Dashboard.php'" class="sidebar-selected"><svg class="icon icon-selected"><use xlink:href="Icons/Dashboard.svg"></use></svg><span>Dashboard</span></button> 
+        <button onclick="location.href='Products.php'"><svg class="icon"><use xlink:href="Icons/Package.svg"></use></svg><span>Products</span></button> 
+        <button onclick="location.href='Carts.php'"><svg class="icon"><use xlink:href="Icons/Cart.svg"></use></svg><span>Carts</span></button> 
+        <button onclick="location.href='Orders.php'"><svg class="icon"><use xlink:href="Icons/Orders.svg"></use></svg><span>Orders</span></button> 
+        <button onclick="location.href='Home Page.php'"><svg class="icon"><use xlink:href="Icons/Logout.svg"></use></svg><span>Logout</span></button> 
     </aside>
     <div id="main-frame">
         <div class="main-content">
@@ -380,4 +369,4 @@
 
     <script src="main.js"></script>
 </body>
-</html>
+</php>

@@ -4,14 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <style>
-        
-        .center-content{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
         #main-frame {
             background-color: #003459;
             height: 476px;
@@ -41,7 +35,7 @@
         }
     </style>
 </head>
-<body class="center-content">
+<body class="center">
     <div id="main-frame">
         <img src="Pictures/Home Page Pic.png" height="331px" width="586px" alt="">
         <h1>“Shop smart, save more, and get your <br> 
