@@ -57,7 +57,7 @@
                                     <button class="buy-button">Buy</button>
 
                                     <div>
-                                        <svg class="icon"><use xlink:href="Icons/trash.svg"></use></svg>
+                                        <svg class="icon red"><use xlink:href="Icons/trash.svg"></use></svg>
                                     </div>
                                 </div>
 
@@ -66,7 +66,7 @@
 
                         <div class="label-description">
                             <div class="label"><?php echo $row['product_name']; ?></div>
-                            <div id="description"><?php echo $row['description']; ?></div>
+                            <div class="description"><?php echo $row['description']; ?></div>
                         </div>
 
                     </div>

@@ -70,126 +70,40 @@
                 <span>Returned</span>
             </div>
             <div class="product-grid-container">
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/Shoes1.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱1,499</div>
-                            <div>
-                                <button class="cancel-button">Cancel</button>
+                <?php
+                    include 'php/connect_to_db.php';
+
+                    $sql = "SELECT * FROM view_orders WHERE ID = " . $_SESSION['UserID'];
+                    $result = mysqli_query($conn, $sql);
+                    ?>
+
+                    <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+
+                    <div class="product-card">
+
+                        <div class="picture-container">
+                            <div class="picture center">
+                                <img src="<?php echo $row['image']; ?>" alt="">
                             </div>
-                            
-                        </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">UrbanFlex Runner</div>
-                        <div id="description">Lightweight running shoes with breathable mesh and flexible sole for everyday comfort.</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/Bag.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱1,899</div>
-                            <div>
-                                <button class="cancel-button">Cancel</button>
+
+                            <div class="price-container">
+                                <div id="price">₱<?php echo $row['price']; ?> x <?php echo $row['quantity']; ?> = ₱<?php echo $row['total_price']; ?></div>
+
+                                <div>
+                                    <button class="cancel-button">Cancel</button>
+                                </div>
+
                             </div>
                         </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">StreetCore High Tops</div>
-                        <div id="description">Stylish high-cut sneakers designed for casual wear with durable rubber outsole.</div>
+
+                        <div class="label-description">
+                            <div class="label"><?php echo $row['product_name']; ?></div>
+                            <div class="description"><?php echo $row['description']; ?></div>
+                        </div>
+
                     </div>
-                </div>
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/Women Shoe.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱2,299</div>
-                            <div>
-                                <button class="cancel-button">Cancel</button>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">AirStride Pro</div>
-                        <div id="description">Cushioned performance shoes built for long runs and maximum shock absorption.</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/Watch.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱899</div>
-                            <div>
-                                <button class="cancel-button">Cancel</button>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">Classic Canvas Low</div>
-                        <div id="description">Minimalist canvas sneakers perfect for daily use and easy outfit matching.</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/TShirt.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱2,499</div>
-                            <div>
-                                <button class="cancel-button">Cancel</button>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">TrailBlaze XT</div>
-                        <div id="description">Rugged outdoor shoes with strong grip, ideal for hiking and rough terrain.</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/Sandals.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱1,699</div>
-                            <div>
-                                <button class="cancel-button">Cancel</button>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">NeoSport Trainers</div>
-                        <div id="description">Versatile training shoes for gym workouts and active lifestyles.</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="picture-container">
-                        <div class="picture center">
-                            <img src="Pictures/Shoes2.png" alt="">
-                        </div>
-                        <div class="price-container">
-                            <div id="price">₱1,799</div>
-                            <div>
-                                <button class="cancel-button">Cancel</button>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="label-description">
-                        <div class="label">GlideMax Comfort</div>
-                        <div id="description">Ultra-soft cushioning with a sleek design for all-day walking comfort.</div>
-                    </div>
-                </div>
+
+                <?php } ?>
             </div>
             <br><hr>
             <div class="bottom-group">

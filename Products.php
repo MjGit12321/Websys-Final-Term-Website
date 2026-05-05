@@ -76,7 +76,7 @@
 
                         <div class="label-description">
                             <div class="label"><?php echo $row['product_name']; ?></div>
-                            <div id="description"><?php echo $row['description']; ?></div>
+                            <div class="description"><?php echo $row['description']; ?></div>
                         </div>
 
                     </div>
