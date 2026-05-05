@@ -1,5 +1,6 @@
 <!DOCTYPE php>
 <php lang="en">
+<?php session_start(); ?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -217,7 +218,9 @@
             <div class="content-grid">
                 <div class="row">
                     <div class="panel welcome-panel">
-                        <h2>Welcome Back MJ Jade G. Piquero!</h2>
+                        <h2>Welcome Back <?php
+echo $_SESSION['Name'];
+                        ?></h2>
                         <div class="stats-grid">
                             <div class="details-card">
                                 <h3>Address</h3>

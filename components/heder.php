@@ -5,6 +5,8 @@
     <div class="brand">Simple E-commerce System</div>
     <div class="profile">
         <div class="avatar"><svg class="icon white"><use xlink:href="/Web Sys E Commerce/Icons/Person.svg"></use></svg> </div>
-        <div>MJ Jade G. Piquero</div>
+        <div><?php
+echo $_SESSION['Name'];
+                        ?></div>
     </div>
 </nav>

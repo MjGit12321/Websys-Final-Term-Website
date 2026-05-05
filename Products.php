@@ -1,4 +1,5 @@
 <!DOCTYPE php>
+<?php session_start(); ?>
 <php lang="en">
 <head>
     <meta charset="UTF-8">

@@ -71,20 +71,16 @@
             margin-top: 10px;
             
         }
-        .login-input{
-            display: block;
-            width: 100%;
-            box-sizing: border-box;
-            height: 35px;
-            margin: 3px 0px 10px 0px;
+        .form .login-input{
 
+            flex: 1;
+            height: 30px;
+            margin: 3px 0px 10px 0px;
+            border-radius: 0px;
             border: none;
-            background-color: #d9d9d9;
-            padding-right: 40px;
-        }
-        .input-with-icon{
-            position: relative;
-            width: 100%;
+            background-color: #f3f3f3;
+            border-bottom: 1px solid #ccc;
+            font-size: 12px;
         }
         #LoginBtn{
             height: 40px;
@@ -95,6 +91,7 @@
             text-align: center;
             cursor: pointer;
             padding-right: 0;
+            border-radius: 10px;
 
             transition: 0.3s all;
         }
@@ -124,6 +121,14 @@
             background-color: #f3f3f3;
             color: black;
         }
+        .form{
+            font-size: 12px;
+        }
+        .form .form-group{
+            display: flex;
+            align-items: center;
+        }
+
     </style>
 </head>
 <body class="center">
@@ -134,28 +139,42 @@
             <hr width="75%">
 
             <form class="form" method="post" action="php/sign_in_credentials.php">
-                <label for="Username">Username:</label><br>
-                <input type="text" name="username" class="login-input" id="Username" value=""> 
-                <label for="Password">Password:</label><br>
-                <div class="input-with-icon">
-                    <input type="password" name="password" class="login-input" id="Password" value="">   
-                    <svg class="icon pass-icon"><use xlink:href="Icons/close.svg"></use></svg> 
+                <div class="form-group">
+                    <label for="Username">Username:</label>
+                    <input type="text" name="username" class="login-input" id="Username" value="">
+                    <label for="Password">Password:</label>
+                    <input type="password" name="password" class="login-input" id="Password" value=""> 
                 </div>
-                <label for="Con-Password">Confirm Password:</label><br>
-                <div class="input-with-icon">
-                    <input type="password" name="confirm_password" class="login-input" id="Con-Password" value="">   
-                    <svg class="icon pass-icon"><use xlink:href="Icons/close.svg"></use></svg> 
+                <div class="form-group">
+                    <label for="Con-Password">Confirm Password:</label>
+                    <input type="password" name="confirm_password" class="login-input" id="Con-Password" value="">
                 </div>
-                <input type="submit" class="login-input" id="LoginBtn" value="Sign up" onclick="location.href='Log in.php'">  
+                <div class="form-group">
+                    <label for="Name">Name:</label>
+                    <input type="text" name="name" class="login-input" id="Name" value=""> 
+                    <label for="Sex">Sex:</label>
+                    <input type="radio" name="gender" value="Male"> Male
+                    <input type="radio" name="gender" value="Female"> Female 
+                </div>
+                <div class="radio-group form-group">
+                    <label for="Birthday">Birthday:</label>
+                    <input type="date" name="birthdate" class="login-input" id="Birthday" value=""> 
+                </div>
+                <div class="form-group">
+                    <label for="Email">Email:</label>
+                    <input type="text" name="email" class="login-input" id="Email" value=""> 
+                    <label for="Phone">Phone_Number:</label>
+                    <input type="text" name="phone" class="login-input" id="Phone" value=""> 
+                </div>
+                <div class="form-group">
+                    <label for="Addr">Address:</label>
+                    <input type="text" name="address" class="login-input" id="Addr" value=""> 
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="login-input" id="LoginBtn" value="Sign up" onclick="location.href='Log in.php'">  
+                </div>
+                
             </form>
-
-            <p>or log in using</p>
-            <div class="social-icons">
-                <svg class="icon"><use xlink:href="Icons/FB.svg"></use></svg>
-                <svg class="icon"><use xlink:href="Icons/Gmail.svg"></use></svg>
-                <svg class="icon"><use xlink:href="Icons/Tiktok.svg"></use></svg>
-            </div>
-            
         </div>
         <div id="right-cover">
             <img src="Pictures/Sign in pic.png" alt="" srcset="">
