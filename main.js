@@ -11,3 +11,22 @@ function minmax_icon(){
     }
 }
 
+function showModal(message, type) {
+    const modal = document.getElementById("modal");
+    const content = modal.querySelector(".modal-content");
+    const text = document.getElementById("modal-message");
+
+    text.innerText = message;
+
+    // remove old styles
+    content.classList.remove("success", "error");
+
+    // add new style
+    content.classList.add(type);
+
+    modal.style.display = "flex";
+}
+
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+}

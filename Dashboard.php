@@ -1,6 +1,7 @@
 <!DOCTYPE php>
-<php lang="en">
-<?php session_start(); ?>
+<?php session_start(); 
+include 'php/auth.php';
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -299,7 +300,7 @@ echo $_SESSION['Name'];
                         <img src="Pictures/Chart.png" width="100%" height="200px" alt="" srcset="">
                     </div>
                     <div class="panel recent-card">
-                        <h3>Recently Viewed Items</h3>
+                        <h3>Sponsored Items</h3>
                         <div class="recent-products">
                             <div class="product-card">
                                 <div class="img-whitebg">
@@ -311,7 +312,6 @@ echo $_SESSION['Name'];
                                 <div class="name">AeroFlex Runner
                                     <p>Lightweight running shoes ...</p>
                                 </div>
-                                
                                 
                             </div>
                             <div class="product-card">

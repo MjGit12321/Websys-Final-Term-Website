@@ -1,6 +1,8 @@
 body {
     background-color: var(--primary);
     min-height: 97vh;
+    margin: 0;
+    padding: 0;
 
 }
 @import url('https://googleapis.com');
@@ -10,11 +12,6 @@ body {
     user-select: none;
     box-sizing: border-box;
 }
-body{
-    margin: 0;
-    padding: 0;
-}
-
 :root{
     --primary: #00A8E8;
     --secondary: #007EA7;
@@ -82,7 +79,7 @@ hr{
 .sidebar {
     position: fixed;
     width: 140px;
-    margin-top: 106px;
+    margin-top: 80px;
     color: var(--white);
     display: flex;
     flex-direction: column;
@@ -172,12 +169,12 @@ hr{
 
 #main-frame {
     position: relative;
-    top: 90px;
+    top: 55px;
     padding: 0 0 20px 0;
 }
 .main-content {
     width: 90%;
-    min-height: 100%;
+    min-height: 85%;
     background: #F3F3F3;
     margin: 0 auto;
     padding: 24px;
@@ -345,4 +342,8 @@ hr{
 }
 .red {
     color: #f75a5a;
+}
+a {
+    text-decoration: none;
+    color: inherit;
 }

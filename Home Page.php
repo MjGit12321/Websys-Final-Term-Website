@@ -11,6 +11,7 @@
             height: 476px;
             width: 771px;
             border-radius: 44px;
+            top: 0px;
 
             text-align: center;
         }

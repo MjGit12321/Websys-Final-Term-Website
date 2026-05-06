@@ -11,9 +11,12 @@
         <span>Dashboard</span>
     </button>
     <button 
-        class="<?php echo basename($_SERVER['PHP_SELF']) == 'Products.php' ? 'sidebar-selected' : ''; ?>" 
+        class="<?php echo (basename($_SERVER['PHP_SELF']) == 'Products.php' || basename($_SERVER['PHP_SELF']) == 'Product Details.php') ? 'sidebar-selected' : ''; ?>" 
         onclick="location.href='Products.php'">
-        <svg class="<?php echo basename($_SERVER['PHP_SELF']) == 'Products.php' ? 'icon icon-selected' : 'icon'; ?>" ><use xlink:href="/Web Sys E Commerce/Icons/Package.svg"></use></svg>
+        <svg class="<?php echo (
+    basename($_SERVER['PHP_SELF']) == 'Products.php' || 
+    basename($_SERVER['PHP_SELF']) == 'Product Details.php'
+) ? 'icon icon-selected' : 'icon'; ?>" ><use xlink:href="/Web Sys E Commerce/Icons/Package.svg"></use></svg>
         <span>Products</span>
     </button>
     <button 

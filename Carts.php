@@ -1,5 +1,7 @@
 <!DOCTYPE php>
-<?php session_start(); ?>
+<?php session_start(); 
+include 'php/auth.php';
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,34 +44,35 @@
                     ?>
 
                     <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                        <a href="Product Details.php?id=<?php echo $row['productID']; ?>">
+                            <div class="product-card">
 
-                    <div class="product-card">
+                                <div class="picture-container">
+                                    <div class="picture center">
+                                        <img src="<?php echo $row['image']; ?>" alt="">
+                                    </div>
 
-                        <div class="picture-container">
-                            <div class="picture center">
-                                <img src="<?php echo $row['image']; ?>" alt="">
-                            </div>
+                                    <div class="price-container">
+                                        <div id="price">₱<?php echo $row['price']; ?></div>
 
-                            <div class="price-container">
-                                <div id="price">₱<?php echo $row['price']; ?></div>
+                                        <div>
+                                            <button class="buy-button">Buy</button>
 
-                                <div>
-                                    <button class="buy-button">Buy</button>
+                                            <div>
+                                                <svg class="icon red"><use xlink:href="Icons/trash.svg"></use></svg>
+                                            </div>
+                                        </div>
 
-                                    <div>
-                                        <svg class="icon red"><use xlink:href="Icons/trash.svg"></use></svg>
                                     </div>
                                 </div>
 
+                                <div class="label-description">
+                                    <div class="label"><?php echo $row['product_name']; ?></div>
+                                    <div class="description"><?php echo $row['description']; ?></div>
+                                </div>
+
                             </div>
-                        </div>
-
-                        <div class="label-description">
-                            <div class="label"><?php echo $row['product_name']; ?></div>
-                            <div class="description"><?php echo $row['description']; ?></div>
-                        </div>
-
-                    </div>
+                        </a>
 
                 <?php } ?>
                 
@@ -89,4 +92,3 @@
 
     <script src="main.js"></script>
 </body>
-<.php>

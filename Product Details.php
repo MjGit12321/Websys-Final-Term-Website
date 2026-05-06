@@ -1,0 +1,214 @@
+<!DOCTYPE php>
+<?php 
+session_start(); 
+include 'php/auth.php';
+
+include 'php/connect_to_db.php';
+
+$id = intval($_GET['id']); // prevents errors
+$sql = "SELECT * FROM producttbl WHERE productID = $id";
+$result = mysqli_query($conn, $sql);
+$product = mysqli_fetch_assoc($result);
+?>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products Details</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+
+/* MAIN FRAME */
+.main-content {
+    position: relative;
+    display: flex;
+    gap: 40px;
+    padding: 30px;
+    background: #eee;
+    border-radius: 20px;
+    max-width: 1100px;
+}
+
+/* IMAGE */
+.product-image {
+    flex: 1;
+    background: #ccc;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-image img {
+    width: 80%;
+}
+
+/* INFO */
+.product-info {
+    flex: 1;
+}
+
+/* TEXT */
+.product-name {
+    margin-bottom: 10px;
+}
+
+.price {
+    margin-bottom: 15px;
+}
+
+/* DESCRIPTION */
+.description p {
+    font-size: 14px;
+    color: #333;
+}
+
+/* SELLER */
+.seller {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    background: #bbb;
+    border-radius: 50%;
+}
+
+.rating {
+    margin-left: auto;
+}
+
+.sold {
+    margin-left: 10px;
+}
+
+/* SIZE */
+.size-options {
+    display: flex;
+    gap: 10px;
+}
+
+.size-options button {
+    padding: 8px 15px;
+    border: none;
+    background: #ddd;
+    cursor: pointer;
+}
+
+/* QUANTITY */
+.quantity {
+    margin-top: 15px;
+}
+
+.qty-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #ddd;
+    width: fit-content;
+    padding: 5px 10px;
+}
+
+.qty-box button {
+    border: none;
+    background: transparent;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* ACTIONS */
+.actions {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.buy-btn {
+    background: #19c37d;
+    color: white;
+    border: none;
+    padding: 12px 40px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.cart-btn {
+    border: none;
+    border-left: 1px solid #000;
+    padding: 12px 20px;
+    cursor: pointer;
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="brand">Simple E-commerce System</div>
+        <div class="profile">
+            <div class="avatar"><svg class="icon white"><use xlink:href="Icons/Person.svg"></use></svg> </div>
+            <div>MJ Jade G. Piquero</div>
+        </div>
+    </nav>
+    <?php include 'components/heder.php'; ?>
+    <?php include 'components/sidebar.php'; ?>
+    <div id="main-frame">
+        <div class="main-content">
+
+            <div class="product-image">
+                <img src="<?php echo $product['image']; ?>">
+            </div>
+
+            <div class="product-info">
+
+                <h1 class="product-name"><?php echo $product['product_name']; ?></h1>
+                <h2 class="price">₱<?php echo $product['price']; ?></h2>
+
+                <div class="description">
+                    <strong>Description:</strong>
+                    <p>
+                        <?php echo $product['description']; ?>
+                    </p>
+                </div>
+
+                <div class="seller">
+                    <div class="avatar"></div>
+                    <span>Mall 1</span>
+                    <div class="rating">4.6 ★</div>
+                    <div class="sold">200 Sold</div>
+                </div>
+
+                <div class="sizes">
+                    <p>Size:</p>
+                    <div class="size-options">
+                        <button>XS</button>
+                        <button>S</button>
+                        <button>M</button>
+                        <button>L</button>
+                    </div>
+                </div>
+
+                <div class="quantity">
+                    <p>Quantity</p>
+                    <div class="qty-box">
+                        <button>-</button>
+                        <span>1</span>
+                        <button>+</button>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button class="buy-btn">Buy</button>
+                    <button class="cart-btn"><svg class="icon white"><use xlink:href="Icons/Add to cart.svg"></use></svg></button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
