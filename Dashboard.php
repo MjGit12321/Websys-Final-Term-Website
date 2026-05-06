@@ -1,6 +1,11 @@
 <!DOCTYPE php>
 <?php session_start(); 
 include 'php/auth.php';
+include 'php/connect_to_db.php';
+$UserID = $_SESSION['UserID'];
+$sql = "SELECT * FROM usertbl WHERE UserID = $UserID";
+$result = mysqli_query($conn, $sql);
+$user = mysqli_fetch_assoc($result);
 ?>
 <head>
     <meta charset="UTF-8">
@@ -212,42 +217,42 @@ include 'php/auth.php';
     </style>
 </head>
 <body>
-    <?php include 'components/heder.php'; ?>
-    <?php include 'components/sidebar.php'; ?>
+    <?php 
+    include 'components/heder.php'; 
+    include 'components/sidebar.php'; 
+    ?>
     <div id="main-frame">
         <div class="main-content">
             <div class="content-grid">
                 <div class="row">
                     <div class="panel welcome-panel">
                         <h2>Welcome Back <?php
-echo $_SESSION['Name'];
+                            echo $_SESSION['Name'];
                         ?></h2>
                         <div class="stats-grid">
                             <div class="details-card">
                                 <h3>Address</h3>
-                                <p>Purok 13, Poblacion, Valencia City, Bukidnon</p>
+                                <p><?php echo $user['Address']; ?></p>
                                 <br>
-                                <p>Details:</p>
-                                <p>May isa daycare, dilito luyo sa China ang Asia gawas sa china para na wala ka</p>
                             </div>
                             <div class="stats-card">
                                 <h3>Total Spent</h3>
-                                <strong>₱ 100,000</strong>
+                                <strong>₱ <?php echo number_format($user['Total_Spent'], 2); ?></strong>
                                 
                             </div>
                             <div class="stats-card">
                                 <h3>Completed Orders</h3>
-                                <strong>200</strong>
+                                <strong><?php echo $user['Completed_Orders']; ?></strong>
                                 
                             </div>
                             <div class="stats-card">
                                 <h3>Total Orders</h3>
-                                <strong>2</strong>
+                                <strong><?php echo $user['Total_Orders']; ?></strong>
                                 
                             </div>
                             <div class="stats-card">
                                 <h3>Cancelled Orders</h3>
-                                <strong>2</strong>
+                                <strong><?php echo $user['Cancelled_Orders']; ?></strong>
                                 
                             </div>
                         </div>

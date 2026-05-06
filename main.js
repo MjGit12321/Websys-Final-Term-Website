@@ -30,3 +30,16 @@ function showModal(message, type) {
 function closeModal() {
     document.getElementById("modal").style.display = "none";
 }
+
+function changeQty(value) {
+    let qty = document.getElementById("qty");
+    let input = document.getElementById("qty-input");
+
+    let current = parseInt(qty.innerText);
+    current += value;
+
+    if (current < 1) current = 1;
+
+    qty.innerText = current;
+    input.value = current;
+}

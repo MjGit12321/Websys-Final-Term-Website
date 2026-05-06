@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="css/style.css">
+
     <style>
         #dashboard-frame {
             display: flex;
@@ -163,5 +164,28 @@
             
         </div>
     </div>
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="css/modal.css">
+    <?php include 'components/modal.php'; ?>
+    <?php if (isset($_GET['status'])) { ?>
+        <script>
+            showModal("<?php echo $_GET['msg']; ?>", "<?php echo $_GET['status']; ?>");
+        </script>
+    <?php } ?>
+
+    <?php if (isset($_GET['status'])) { ?>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        showModal("<?php echo $_GET['msg']; ?>", "<?php echo $_GET['status']; ?>");
+
+        // ✅ redirect after success
+        if ("<?php echo $_GET['status']; ?>" === "success") {
+            setTimeout(() => {
+                window.location.href = "Dashboard.php";
+            }, 1500); // 1.5 seconds delay
+        }
+    });
+</script>
+<?php } ?>
 </body>
 </html>

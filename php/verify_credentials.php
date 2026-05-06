@@ -15,8 +15,8 @@ if (mysqli_num_rows($result) > 0) {
     $_SESSION['UserID'] = $row['UserID'];
     $_SESSION['Name'] = $row['Name'];
 
-    header("Location: ../Dashboard.php");
+    header("Location: ../Log in.php?status=success&msg=Login successful");
 } else {
-    echo "Invalid username or password";
+    header("Location: ../Log in.php?status=error&msg=Invalid username or password");
 }
 ?>

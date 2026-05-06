@@ -64,12 +64,14 @@ include 'php/auth.php';
 
                                         <div>
                                             <button class="buy-button">Buy</button>
-
-                                            <div>
-                                                <svg class="icon">
-                                                    <use xlink:href="Icons/Add to cart.svg"></use>
-                                                </svg>
-                                            </div>
+                                            <link rel="stylesheet" href="css/modal.css">
+                                            <button onclick="showModal('Added to cart!', 'success')">
+                                                <div>
+                                                    <svg class="icon">
+                                                        <use xlink:href="Icons/Add to cart.svg"></use>
+                                                    </svg>
+                                                </div>
+                                            </button>
                                         </div>
 
                                     </div>
@@ -96,5 +98,5 @@ include 'php/auth.php';
         </div>
     </div>
 
-    <script src="main.js"></script>
+    <script src="main.js"></scrip>
 </body>

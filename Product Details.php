@@ -9,12 +9,14 @@ $id = intval($_GET['id']); // prevents errors
 $sql = "SELECT * FROM producttbl WHERE productID = $id";
 $result = mysqli_query($conn, $sql);
 $product = mysqli_fetch_assoc($result);
+
 ?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products Details</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modal.css">
     <style>
 
 /* MAIN FRAME */
@@ -145,7 +147,9 @@ $product = mysqli_fetch_assoc($result);
 }
     </style>
 </head>
+
 <body>
+    
     <nav class="navbar">
         <div class="brand">Simple E-commerce System</div>
         <div class="profile">
@@ -155,6 +159,7 @@ $product = mysqli_fetch_assoc($result);
     </nav>
     <?php include 'components/heder.php'; ?>
     <?php include 'components/sidebar.php'; ?>
+   
     <div id="main-frame">
         <div class="main-content">
 
@@ -190,25 +195,39 @@ $product = mysqli_fetch_assoc($result);
                         <button>L</button>
                     </div>
                 </div>
-
-                <div class="quantity">
-                    <p>Quantity</p>
-                    <div class="qty-box">
-                        <button>-</button>
-                        <span>1</span>
-                        <button>+</button>
+                <form action="php/add_to_order.php" method="POST">
+                    <div class="quantity">
+                        <p>Quantity</p>
+                        <div class="qty-box">
+                            <button type="button" onclick="changeQty(-1)">-</button>
+                                <input type="text" id="qty" name="quantity" value="1">
+                            <button type="button" onclick="changeQty(1)">+</button>
+                        </div>
                     </div>
-                </div>
 
-                <div class="actions">
-                    <button class="buy-btn">Buy</button>
-                    <button class="cart-btn"><svg class="icon white"><use xlink:href="Icons/Add to cart.svg"></use></svg></button>
-                </div>
-
+                    <div class="actions">
+                        <input type="hidden" name="productID" value="<?php echo $product['productID']; ?>">
+                        <input type="hidden" name="status" value="shipping">
+                        <input type="hidden" name="payment_status" value="cash">
+                        <input class="buy-btn" type="submit" value="Buy">
+                        <button class="cart-btn"><svg class="icon white"><use xlink:href="Icons/Add to cart.svg"></use></svg></button>
+                    </div>
+                </form>
+                <script>
+   
+                    document.addEventListener("DOMContentLoaded", () => {
+                        <?php if ($_GET['order'] == 'success') { ?>
+                            showModal("Order placed successfully!", "success");
+                        <?php } else { ?>
+                            showModal("Order failed!", "error");
+                        <?php } ?>
+                    });
+                </script>
             </div>
 
         </div>
     </div>
 
     <script src="main.js"></script>
+    <?php include 'components/modal.php'; ?>
 </body>
