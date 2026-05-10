@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <style>
         #main-frame {
-            background-color: #003459;
+            background-color: var(--tertiary);
             height: 476px;
             width: 771px;
             border-radius: 44px;
@@ -16,7 +16,7 @@
             text-align: center;
         }
         h1 {
-            color: #F3F3F3;
+            color: var(--white);
             margin-top: -30px;
         }
         button{
@@ -31,7 +31,7 @@
             transition: 0.3s all;
         }
         button:hover{
-            background-color: #F3F3F3;
+            background-color: var(--white);
         
         }
     </style>

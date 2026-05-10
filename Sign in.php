@@ -70,9 +70,10 @@
             margin-top: 10px;
             
         }
-        .form .login-input{
+        .form .form-group input.login-input{
 
             flex: 1;
+            min-width: 30px;
             height: 30px;
             margin: 3px 0px 10px 0px;
             border-radius: 0px;
@@ -127,7 +128,6 @@
             display: flex;
             align-items: center;
         }
-
     </style>
 </head>
 <body class="center">
@@ -139,10 +139,12 @@
 
             <form class="form" method="post" action="php/sign_in_credentials.php">
                 <div class="form-group">
+                    
                     <label for="Username">Username:</label>
                     <input type="text" name="username" class="login-input" id="Username" value="">
                     <label for="Password">Password:</label>
                     <input type="password" name="password" class="login-input" id="Password" value=""> 
+                    
                 </div>
                 <div class="form-group">
                     <label for="Con-Password">Confirm Password:</label>

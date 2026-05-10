@@ -1,5 +1,5 @@
 <!DOCTYPE php>
-<?php session_start(); 
+<?php 
 include 'php/auth.php';
 include 'php/connect_to_db.php';
 $UserID = $_SESSION['UserID'];
@@ -24,11 +24,11 @@ $user = mysqli_fetch_assoc($result);
             gap: 16px;
         }
         .panel {
-            background: #ffffff;
+            background: var(--white);
             border-radius: 18px;
             padding: 10px 18px 18px 18px;
-            box-shadow: 0 12px 20px rgba(0,0,0,0.08);
-            border: 2px solid #007EA7;
+            box-shadow: 0 0px 10px var(--black);
+            border: 2px solid var(--secondary);
             position: relative;
             overflow: hidden;
 
@@ -38,7 +38,7 @@ $user = mysqli_fetch_assoc($result);
             content: '';
             width: 100%;
             height: 15%;
-            background-color: #007EA7;
+            background-color: var(--secondary);
             position: absolute;
             top: 0;
             left: 0;
@@ -52,7 +52,7 @@ $user = mysqli_fetch_assoc($result);
             margin: 0;
             font-size: 26px;
             line-height: 1.1;
-            color: #F3F3F3;
+            color: var(--white);
             z-index: 2;
         }
         .welcome-panel h3 {
@@ -62,10 +62,10 @@ $user = mysqli_fetch_assoc($result);
         }
         .details-card {
           
-            background: #e5e5e5;
+            background: var(--card-bg);
             border-radius: 10px;
             padding: 14px;
-            color: #283444;
+            color: var(--card-color);
         
             
             grid-row: span 2;
@@ -82,7 +82,7 @@ $user = mysqli_fetch_assoc($result);
             grid-template-columns: 1fr 1fr;
         }
         .stats-card {
-            background: #e5e5e5;
+            background: var(--card-bg);
             border-radius: 10px;
             padding: 8px;
             min-height: 30px;
@@ -98,7 +98,7 @@ $user = mysqli_fetch_assoc($result);
         }
         .stats-card span {
             font-size: 13px;
-            color: #465a6b;
+            color: var(--card-color);
         }
         .stats-card h3 {
             margin: 0;
@@ -106,7 +106,7 @@ $user = mysqli_fetch_assoc($result);
         .panel > h3 {
             margin: 0!important;
             font-size: 18px !important;
-            color: #F3F3F3 !important;
+            color: var(--white) !important;
             z-index: 2;
             position: relative;
             margin-bottom: 25px !important;
@@ -127,14 +127,13 @@ $user = mysqli_fetch_assoc($result);
         }
         .pending-table th,
         .pending-table td {
-            border: 1px solid #c9d7e7;
+            border: 1px solid var(--table-border);
             padding: 10px 12px;
             font-size: 13px;
             text-align: left;
         }
         .pending-table th {
-            background: #f2f7fb;
-            color: #1f3d5a;
+            color: var(--black);
         }
         
         .recent-products {
@@ -143,15 +142,14 @@ $user = mysqli_fetch_assoc($result);
             gap: 18px;
         }
         .product-card {
-            background: #007EA7;
+            background: var(--secondary);
             border-radius: 18px;
             padding: 14px;
             display: flex;
             flex-direction: column;
             gap: 10px;
-            box-shadow: 0 12px 20px rgba(0,0,0,0.07);
             
-            color: #F3F3F3;
+            color: var(--white);
         }
         .product-card img {
             width: 100%;
@@ -174,7 +172,7 @@ $user = mysqli_fetch_assoc($result);
             margin: 0;
             font-size: 13px;
             font-weight: 500;
-            color: #d8d8d8;
+            color: var(--card-W-desc);
         }
         .product-card .name p:hover, .product-card .name:hover{
             text-decoration: underline;
@@ -184,7 +182,7 @@ $user = mysqli_fetch_assoc($result);
             margin-top: -3px;
             position: absolute;
             right: 10px;
-            background: #12c56e;
+            background: var(--btn-buy);
             color: white;
             border: none;
             padding: 5px 23px;
@@ -193,17 +191,17 @@ $user = mysqli_fetch_assoc($result);
             font-size: 12px;
             font-weight: 700;
             align-self: flex-start;
-            border: 1px solid white;
+            border: 1px solid var(--btn-border);
 
             transition: 0.3s all;
         }
         .product-card .buy-button:hover{
             background-color: white;
-            color: #12c56e;
-            border: 1px solid #12c56e;
+            color: var(--btn-buy);
+            border: 1px solid var(--btn-buy);
         }
         .img-whitebg{
-            background-color: #F3F3F3;
+            background-color: var(--white);
             border-radius: 10px;
             padding: 5px;
             position: relative;
@@ -310,7 +308,7 @@ $user = mysqli_fetch_assoc($result);
                             <div class="product-card">
                                 <div class="img-whitebg">
                                     <img src="Pictures/Shoes1.png" alt="Shoes for men">
-                                    <div class="price">₱1,899 <button class="buy-button">Buy</button></div>
+                                    <div class="price">₱1,899</div>
                                     
                                 </div>
                                 
@@ -322,7 +320,7 @@ $user = mysqli_fetch_assoc($result);
                             <div class="product-card">
                                 <div class="img-whitebg">
                                     <img src="Pictures/Shoes2.png" alt="Shoes for men">
-                                    <div class="price">₱2,299 <button class="buy-button">Buy</button></div>
+                                    <div class="price">₱2,299</div>
                                 </div>
                                 
                                 <div class="name">StreetPulse Classic
@@ -334,7 +332,7 @@ $user = mysqli_fetch_assoc($result);
                             <div class="product-card">
                                 <div class="img-whitebg">
                                     <img src="Pictures/Shoes3.png" alt="Shoes for men">
-                                    <div class="price">₱2,799 <button class="buy-button">Buy</button></div>
+                                    <div class="price">₱2,799</div>
                                 </div>
                                 
                                 <div class="name">VoltEdge Trainers
@@ -346,7 +344,7 @@ $user = mysqli_fetch_assoc($result);
                             <div class="product-card">
                                 <div class="img-whitebg">
                                     <img src="Pictures/Shoes4.png" alt="Shoes for men">
-                                    <div class="price">₱1,599 <button class="buy-button">Buy</button></div>
+                                    <div class="price">₱1,599</div>
                                 </div>
                                 
                                 <div class="name">CloudStep Comfort

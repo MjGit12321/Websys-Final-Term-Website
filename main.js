@@ -43,3 +43,27 @@ function changeQty(value) {
     qty.innerText = current;
     input.value = current;
 }
+
+function addToCart() {
+    const productID = document.getElementById("productID").value;
+    const quantity = document.getElementById("qty").value;
+
+    fetch("php/add_to_cart.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `product_id=${productID}&quantity=${quantity}`
+    })
+    .then(res => res.text())
+    .then(data => {
+        if (data === "success") {
+            showModal("Added to cart!", "success");
+        } else {
+            showModal("Failed to add to cart!", "error");
+        }
+    })
+    .catch(() => {
+        showModal("Something went wrong!", "error");
+    });
+}

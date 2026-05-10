@@ -25,7 +25,7 @@ $product = mysqli_fetch_assoc($result);
     display: flex;
     gap: 40px;
     padding: 30px;
-    background: #eee;
+    background: var(--white);
     border-radius: 20px;
     max-width: 1100px;
 }
@@ -33,7 +33,7 @@ $product = mysqli_fetch_assoc($result);
 /* IMAGE */
 .product-image {
     flex: 1;
-    background: #ccc;
+    background: var(--white);
     border-radius: 15px;
     display: flex;
     align-items: center;
@@ -206,11 +206,13 @@ $product = mysqli_fetch_assoc($result);
                     </div>
 
                     <div class="actions">
-                        <input type="hidden" name="productID" value="<?php echo $product['productID']; ?>">
+                        <input type="hidden" id="productID" name="productID" value="<?php echo $product['productID']; ?>">
                         <input type="hidden" name="status" value="shipping">
                         <input type="hidden" name="payment_status" value="cash">
                         <input class="buy-btn" type="submit" value="Buy">
-                        <button class="cart-btn"><svg class="icon white"><use xlink:href="Icons/Add to cart.svg"></use></svg></button>
+                        <button type="button" class="cart-btn" onclick="addToCart()">
+                            <svg class="icon white"><use xlink:href="Icons/Add to cart.svg"></use></svg>
+                        </button>
                     </div>
                 </form>
                 <script>
@@ -218,8 +220,12 @@ $product = mysqli_fetch_assoc($result);
                     document.addEventListener("DOMContentLoaded", () => {
                         <?php if ($_GET['order'] == 'success') { ?>
                             showModal("Order placed successfully!", "success");
-                        <?php } else { ?>
+                        <?php } if ($_GET['order'] == 'error') { ?>
                             showModal("Order failed!", "error");
+                        <?php } if ($_GET['order'] == 'success_cart') { ?>
+                            showModal("Item added to cart!", "success");
+                        <?php } if ($_GET['order'] == 'failed_cart') { ?>
+                            showModal("Failed to add item to cart!", "error");
                         <?php } ?>
                     });
                 </script>

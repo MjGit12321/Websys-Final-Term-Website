@@ -1,5 +1,5 @@
 <!DOCTYPE php>
-<?php session_start(); 
+<?php 
 include 'php/auth.php';
 ?>
 <head>
@@ -20,33 +20,100 @@ include 'php/auth.php';
     <?php include 'components/sidebar.php'; ?>
     <div id="main-frame">
         <div class="main-content">
-            <div class="top-group">
-                <div class="sort-group">
-                    <label for="sort">Sort by:</label>
-                    <select id="sort-name" class="sort" name="sort">
-                        <option value="name-asc">Name (A-Z)</option>
-                        <option value="name-desc">Name (Z-A)</option>
-                    </select>
-                    <select id="sort-price" class="sort" name="sort">
-                        <option value="price-asc">Price (Low to High)</option>
-                        <option value="price-desc">Price (High to Low)</option>
-                    </select>
-                    <select id="sort-date" class="sort" name="sort">
-                        <option value="date-asc">Date (New to Old)</option>
-                        <option value="date-desc">Date (Old to New)</option>
-                    </select>
+            <form method="GET">
+                <div class="top-group">
+                    <div class="sort-group">
+                        <label for="sort">Sort by:</label>
+                        <select class="sort" name="sort" onchange="this.form.submit()">
+                            <option value="">Default</option>
+                            <option value="name_asc"
+                                <?php if(isset($_GET['sort']) && $_GET['sort'] == 'name_asc') echo 'selected'; ?>>
+                                Name (A-Z)
+                            </option>
+                            <option value="name_desc"
+                                <?php if(isset($_GET['sort']) && $_GET['sort'] == 'name_desc') echo 'selected'; ?>>
+                                Name (Z-A)
+                            </option>
+                            <option value="price_asc"
+                                <?php if(isset($_GET['sort']) && $_GET['sort'] == 'price_asc') echo 'selected'; ?>>
+                                Price (Low to High)
+                            </option>
+                            <option value="price_desc"
+                                <?php if(isset($_GET['sort']) && $_GET['sort'] == 'price_desc') echo 'selected'; ?>>
+                                Price (High to Low)
+                            </option>
+                            <option value="date_desc"
+                                <?php if(isset($_GET['sort']) && $_GET['sort'] == 'date_desc') echo 'selected'; ?>>
+                                Date (Newest)
+                            </option>
+                            <option value="date_asc"
+                                <?php if(isset($_GET['sort']) && $_GET['sort'] == 'date_asc') echo 'selected'; ?>>
+                                Date (Oldest)
+                            </option>
+                        </select>
+                    </div>
+                    <input 
+                                type="text"
+                                id="search-input"
+                                name="search"
+                                placeholder="Search products..."
+                                value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>"
+                            >
                 </div>
-                <div id="search-box">
-                    <img src="Icons/search.png" alt="" srcset="">
-                    <input type="text" id="search-input" placeholder="Search products...">
-                </div>
-            </div>
+            </form>
+
             <br><hr>
             <div class="product-grid-container">
                 <?php
                     include 'php/connect_to_db.php';
 
+                    // Initial SQL structure
                     $sql = "SELECT * FROM producttbl";
+                    $where = [];
+                    $order = "";
+
+                    /* SEARCH */
+                    if(isset($_GET['search']) && $_GET['search'] != ''){
+                        $search = mysqli_real_escape_string($conn, $_GET['search']);
+                        $where[] = "product_name LIKE '%$search%'";
+                    }
+
+                    /* WHERE - Apply filters if search exists */
+                    if(count($where) > 0){
+                        $sql .= " WHERE " . implode(" AND ", $where);
+                    }
+
+                    /* SORT */
+                    if(isset($_GET['sort'])){
+                        switch($_GET['sort']){
+                            case "name_asc":
+                                $order = " ORDER BY product_name ASC";
+                                break;
+
+                            case "name_desc":
+                                $order = " ORDER BY product_name DESC";
+                                break;
+
+                            case "price_asc":
+                                $order = " ORDER BY price ASC";
+                                break;
+
+                            case "price_desc":
+                                $order = " ORDER BY price DESC";
+                                break;
+
+                            case "date_asc":
+                                $order = " ORDER BY created_at ASC";
+                                break;
+
+                            case "date_desc":
+                                $order = " ORDER BY created_at DESC";
+                                break;
+                        }
+                    }
+
+                    // Append ordering and execute
+                    $sql .= $order;
                     $result = mysqli_query($conn, $sql);
                     ?>
 
@@ -61,19 +128,6 @@ include 'php/auth.php';
 
                                     <div class="price-container">
                                         <div id="price">₱<?php echo $row['price']; ?></div>
-
-                                        <div>
-                                            <button class="buy-button">Buy</button>
-                                            <link rel="stylesheet" href="css/modal.css">
-                                            <button onclick="showModal('Added to cart!', 'success')">
-                                                <div>
-                                                    <svg class="icon">
-                                                        <use xlink:href="Icons/Add to cart.svg"></use>
-                                                    </svg>
-                                                </div>
-                                            </button>
-                                        </div>
-
                                     </div>
                                 </div>
 
@@ -86,17 +140,9 @@ include 'php/auth.php';
                 <?php } ?>
             </div>
             <br><hr>
-            <div class="bottom-group">
-                <div><</div>
-                <div class="current-section">1</div>
-                <div>2</div>
-                <div>3</div>
-                <div>4</div>
-                <div>5</div>
-                <div>></div>
-            </div>
+            
         </div>
     </div>
 
-    <script src="main.js"></scrip>
+    <script src="main.js"></script>
 </body>

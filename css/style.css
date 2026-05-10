@@ -18,10 +18,26 @@ body {
     --tertiary: #003459;
     --black: #00171F;
     --white: #fff;
+    --gray: #6c6c6c;
     
     /*sidebar*/
     --sidebar-bg: #F3F3F3;
     --sidebar-btn-hover: #dadada;
+
+    /*Card*/
+    --card-bg: #e5e5e5;
+    --card-color: #283444;
+    --card-W-desc:#d8d8d8;
+
+    /*Tables*/
+    --table-border: #c9d7e7;
+
+    /*Button*/
+    --btn-buy: #12c56e;
+    --btn-border: #fff;
+
+    /*Input*/
+    --input-bg: #d9d9d9;
 }
 
 ::-webkit-scrollbar {
@@ -79,7 +95,7 @@ hr{
 .sidebar {
     position: fixed;
     width: 140px;
-    margin-top: 80px;
+    margin-top: 60px;
     color: var(--white);
     display: flex;
     flex-direction: column;
@@ -169,7 +185,7 @@ hr{
 
 #main-frame {
     position: relative;
-    top: 55px;
+    top: 85px;
     padding: 0 0 20px 0;
 }
 .main-content {
@@ -233,6 +249,17 @@ hr{
     padding: 16px;
     box-sizing: border-box;
     height: 250px;
+
+    position:relative
+}
+.product-card button{
+    position: absolute;
+    bottom: 59px;
+    right: 20px;
+    border: none;
+    background: inherit;
+
+    cursor: pointer;
 }
 .product-grid-container{
     display: grid;
@@ -272,7 +299,7 @@ hr{
     color: #12c56e;
     border: 1px solid #12c56e;
 }
-.price-container .cancel-button{
+.product-card form button.cancel-button{
     padding: 5px 15px;
     background: #f75a5a;
     border: none;
@@ -284,7 +311,7 @@ hr{
 
     transition: 0.3s all;
 }
-.price-container .cancel-button:hover{
+.product-card form button.cancel-button:hover{
     background-color: white;
     color: #f75a5a;
     border: 1px solid #f75a5a;
@@ -346,4 +373,26 @@ hr{
 a {
     text-decoration: none;
     color: inherit;
+}
+#main-frame > .main-content > form {
+    margin-bottom: 0;
+}
+.bottom-group{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.bottom-group a{
+    padding: 8px 14px;
+    background: #eee;
+    border-radius: 8px;
+    text-decoration: none;
+    color: black;
+}
+
+.current-section{
+    background: #00A8E8 !important;
+    color: white !important;
 }

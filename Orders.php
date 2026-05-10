@@ -1,5 +1,5 @@
 <!DOCTYPE php>
-<?php session_start(); 
+<?php
 include 'php/auth.php';
 ?>
 <head>
@@ -7,6 +7,7 @@ include 'php/auth.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orders</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modal.css">
     <style>
         #options{
             display: flex;
@@ -16,19 +17,19 @@ include 'php/auth.php';
         }
         #options span{
             cursor: pointer;
-            color: #6c6c6c;
+            color: var(--gray);
 
             transition: 0.3s all;
         }
         #options span:not(:first-child){
-            border-left: 1px solid black;
+            border-left: 1px solid var(--black);
             padding-left: 30px;
         }
         #options span:hover{
-            color: #00A8E8;
+            color: var(--primary);
         }
         #options span.active{
-            color: black;
+            color: var(--black);
             font-weight: bold;
             text-decoration: underline;
         }
@@ -38,6 +39,7 @@ include 'php/auth.php';
 <body>
     <?php include 'components/heder.php'; ?>
     <?php include 'components/sidebar.php'; ?>
+    
     <div id="main-frame">
         <div class="main-content">
             <div class="top-group">
@@ -81,19 +83,14 @@ include 'php/auth.php';
                     <?php while ($row = mysqli_fetch_assoc($result)) { ?>
 
                     <div class="product-card">
-
+                        <a href="Product Details.php?id=<?php echo $row['productID']; ?>">
                         <div class="picture-container">
                             <div class="picture center">
                                 <img src="<?php echo $row['image']; ?>" alt="">
                             </div>
 
                             <div class="price-container">
-                                <div id="price">₱<?php echo $row['price']; ?> x <?php echo $row['quantity']; ?> = ₱<?php echo $row['total_price']; ?></div>
-
-                                <div>
-                                    <button class="cancel-button">Cancel</button>
-                                </div>
-
+                                <div id="price">₱<?php echo $row['total_price']; ?></div>
                             </div>
                         </div>
 
@@ -101,7 +98,14 @@ include 'php/auth.php';
                             <div class="label"><?php echo $row['product_name']; ?></div>
                             <div class="description"><?php echo $row['description']; ?></div>
                         </div>
+                        </a>
+                        <form action="php/delete_order.php" method="POST">
+                            <input type="hidden" name="orderID" value="<?php echo $row['orderID']; ?>">
 
+                            <button type="submit" class="cancel-button">
+                                cancel
+                            </button>
+                        </form>
                     </div>
 
                 <?php } ?>
@@ -118,7 +122,20 @@ include 'php/auth.php';
             </div>
         </div>
     </div>
+    <script>
+        <?php if (isset($_GET['delete'])) { ?>
+            document.addEventListener("DOMContentLoaded", () => {
 
+                <?php if ($_GET['delete'] == 'success') { ?>
+                    showModal("Item removed from cart!", "success");
+                <?php } else { ?>
+                    showModal("Failed to remove item!", "error");
+                <?php } ?>
+
+            });
+            <?php } ?>
+    </script>
     <script src="main.js"></script>
+    <?php include 'components/modal.php'; ?>
 </body>
 </php>

@@ -1,5 +1,5 @@
 <!DOCTYPE php>
-<?php session_start(); 
+<?php
 include 'php/auth.php';
 ?>
 <head>
@@ -7,6 +7,7 @@ include 'php/auth.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carts</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modal.css">
 </head>
 <body>
     <?php include 'components/heder.php'; ?>
@@ -44,9 +45,9 @@ include 'php/auth.php';
                     ?>
 
                     <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-                        <a href="Product Details.php?id=<?php echo $row['productID']; ?>">
+                        
                             <div class="product-card">
-
+                                <a href="Product Details.php?id=<?php echo $row['productID']; ?>">
                                 <div class="picture-container">
                                     <div class="picture center">
                                         <img src="<?php echo $row['image']; ?>" alt="">
@@ -55,14 +56,6 @@ include 'php/auth.php';
                                     <div class="price-container">
                                         <div id="price">₱<?php echo $row['price']; ?></div>
 
-                                        <div>
-                                            <button class="buy-button">Buy</button>
-
-                                            <div>
-                                                <svg class="icon red"><use xlink:href="Icons/trash.svg"></use></svg>
-                                            </div>
-                                        </div>
-
                                     </div>
                                 </div>
 
@@ -70,9 +63,32 @@ include 'php/auth.php';
                                     <div class="label"><?php echo $row['product_name']; ?></div>
                                     <div class="description"><?php echo $row['description']; ?></div>
                                 </div>
+                                </a>
+                                <form action="php/delete_cart.php" method="POST">
+                                    <input type="hidden" name="cartID" value="<?php echo $row['cartID']; ?>">
 
+                                    <button type="submit" class="trash-btn">
+                                        <svg class="icon red">
+                                            <use xlink:href="Icons/trash.svg"></use>
+                                        </svg>
+                                    </button>
+                                </form>
+                                <script>
+                                <?php if (isset($_GET['delete'])) { ?>
+                                    document.addEventListener("DOMContentLoaded", () => {
+
+                                        <?php if ($_GET['delete'] == 'success') { ?>
+                                            showModal("Item removed from cart!", "success");
+                                        <?php } else { ?>
+                                            showModal("Failed to remove item!", "error");
+                                        <?php } ?>
+
+                                    });
+                                        <?php } ?>
+                                </script>
                             </div>
-                        </a>
+                        
+                        
 
                 <?php } ?>
                 
@@ -89,6 +105,7 @@ include 'php/auth.php';
             </div>
         </div>
     </div>
-
-    <script src="main.js"></script>
+    <?php include 'components/modal.php'; ?>
+    <script src="main.js">
+    </script>
 </body>

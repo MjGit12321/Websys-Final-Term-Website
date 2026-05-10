@@ -13,13 +13,13 @@
             height: 476px;
             border-radius: 44px;
             overflow: hidden;
-            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.15);
-            background-color: #f3f3f3;
+            box-shadow: 0 24px 60px #00000026;
+            background-color: var(--white);
         }
         #left-cover{
             position: relative;
             border-radius: 22px;
-            background-color: #003459;
+            background-color: var(--tertiary);
             height: 100%;
             width: 50%;
             display: flex;
@@ -42,9 +42,9 @@
             line-height: 1.4;
         }
         #SignUpBtn {
-            background-color: #003459;
-            color: white;
-            border: 2px solid white;
+            background-color: var(--tertiary);
+            color: var(--white);
+            border: 2px solid var(--white);
             border-radius: 10px;
             padding: 10px 24px;
             cursor: pointer;
@@ -54,8 +54,8 @@
             transition: 0.3s all;
         }
         #SignUpBtn:hover{
-            background-color: #f3f3f3;
-            color: black;
+            background-color: var(--white);
+            color: var(--black);
         }
         #right-content{
             position: relative;
@@ -65,7 +65,7 @@
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
-            padding-top: 40px;
+            padding-top: 75px;
 
             text-align: center;
         }
@@ -87,7 +87,7 @@
             margin: 3px 0px 10px 0px;
 
             border: none;
-            background-color: #d9d9d9;
+            background-color: var(--input-bg);
             padding-right: 40px;
         }
         .input-with-icon{
@@ -95,12 +95,12 @@
             width: 100%;
         }
         #LoginBtn:hover{
-            background-color:#003459;
-            color: #f3f3f3;
+            background-color: var(--tertiary);
+            color: var(--white);
         }
         #LoginBtn{
             height: 40px;
-            background-color: #00A8E8;
+            background-color: var(--primary);
             color: white;
             border: none;
             font-size: 16px;
@@ -153,15 +153,7 @@
                 </div>
 
                 <input type="submit" class="login-input" id="LoginBtn" value="Log in">  
-            </form>
-
-            <p>or sign in using</p>
-            <div class="social-icons">
-                <svg class="icon"><use xlink:href="Icons/FB.svg"></use></svg>
-                <svg class="icon"><use xlink:href="Icons/Gmail.svg"></use></svg>
-                <svg class="icon"><use xlink:href="Icons/Tiktok.svg"></use></svg>
-            </div>
-            
+            </form>           
         </div>
     </div>
     <script src="main.js"></script>
