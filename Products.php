@@ -66,26 +66,34 @@ include 'php/auth.php';
             <div class="product-grid-container">
                 <?php
                     include 'php/connect_to_db.php';
-
-                    // Initial SQL structure
+                    /* PAGINATION */
+                    $limit = 15;
+                    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+                    if($page < 1){
+                        $page = 1;
+                    }
+                    $offset = ($page - 1) * $limit;
+                    /* MAIN QUERY */
                     $sql = "SELECT * FROM producttbl";
                     $where = [];
                     $order = "";
-
                     /* SEARCH */
-                    if(isset($_GET['search']) && $_GET['search'] != ''){
-                        $search = mysqli_real_escape_string($conn, $_GET['search']);
+                    if(isset($_GET['search']) && trim($_GET['search']) != ''){
+                        // Trim the input to remove accidental leading/trailing spaces
+                        $search_term = trim($_GET['search']);
+                        $search = mysqli_real_escape_string($conn, $search_term);
+
                         $where[] = "product_name LIKE '%$search%'";
                     }
-
-                    /* WHERE - Apply filters if search exists */
+                    /* WHERE */
                     if(count($where) > 0){
                         $sql .= " WHERE " . implode(" AND ", $where);
                     }
-
                     /* SORT */
                     if(isset($_GET['sort'])){
+
                         switch($_GET['sort']){
+
                             case "name_asc":
                                 $order = " ORDER BY product_name ASC";
                                 break;
@@ -111,12 +119,25 @@ include 'php/auth.php';
                                 break;
                         }
                     }
+                    /* COUNT QUERY */
+                    $count_sql = "SELECT COUNT(*) as total FROM producttbl";
 
-                    // Append ordering and execute
+                    if(count($where) > 0){
+                        $count_sql .= " WHERE " . implode(" AND ", $where);
+                    }
+                    $count_result = mysqli_query($conn, $count_sql);
+                    $count_row = mysqli_fetch_assoc($count_result);
+                    $total_products = $count_row['total'];
+                    $total_pages = ceil($total_products / $limit);
+                    /* FINAL QUERY */
                     $sql .= $order;
+                    $sql .= " LIMIT $limit OFFSET $offset";
+                    /* EXECUTE */
                     $result = mysqli_query($conn, $sql);
+                    if(!$result){
+                        die(mysqli_error($conn));
+                    }
                     ?>
-
                 <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                     <a href="Product Details.php?id=<?php echo $row['productID']; ?>">
                         <div class="product-card">
@@ -140,7 +161,43 @@ include 'php/auth.php';
                 <?php } ?>
             </div>
             <br><hr>
-            
+            <div class="bottom-group">
+
+                <!-- PREVIOUS -->
+                <?php if($page > 1){ ?>
+                    <a href="?page=<?php echo $page - 1; ?>
+                    &search=<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>
+                    &sort=<?php echo isset($_GET['sort']) ? $_GET['sort'] : ''; ?>">
+                        <
+                    </a>
+                <?php } ?>
+
+                <!-- PAGE NUMBERS -->
+                <?php for($i = 1; $i <= $total_pages; $i++){ ?>
+
+                    <a 
+                        class="<?php echo ($i == $page) ? 'current-section' : ''; ?>"
+
+                        href="?page=<?php echo $i; ?>
+                        &search=<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>
+                        &sort=<?php echo isset($_GET['sort']) ? $_GET['sort'] : ''; ?>">
+                        
+                        <?php echo $i; ?>
+
+                    </a>
+
+                <?php } ?>
+
+                <!-- NEXT -->
+                <?php if($page < $total_pages){ ?>
+                    <a href="?page=<?php echo $page + 1; ?>
+                    &search=<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>
+                    &sort=<?php echo isset($_GET['sort']) ? $_GET['sort'] : ''; ?>">
+                        >
+                    </a>
+                <?php } ?>
+
+            </div>
         </div>
     </div>
 
