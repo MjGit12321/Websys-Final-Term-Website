@@ -16,8 +16,14 @@ $product = mysqli_fetch_assoc($result);
 
 $display_qty = isset($_GET['qty']) ? intval($_GET['qty']) : 1;
 
+$formatted_date = "";
 // Format it to look clean (e.g., "May 11, 2026")
-$formatted_date = date("F j, Y g:i A", strtotime($_GET["Date_Added"]));
+if (isset($_GET["Date_Added"])){
+    $formatted_date = date("F j, Y g:i A", strtotime($_GET["Date_Added"]));
+}else{
+    $formatted_date = date("F j, Y g:i A", strtotime($product["created_at"]));
+}
+
 
 $hideClass = ($source === 'orders') ? 'hide-actions' : '';
 ?>
@@ -43,7 +49,7 @@ $hideClass = ($source === 'orders') ? 'hide-actions' : '';
 /* IMAGE */
 .product-image {
     flex: 1;
-    background: var(--white);
+    background: var(--picture-bg);
     border-radius: 15px;
     display: flex;
     align-items: center;
