@@ -1,4 +1,3 @@
-<!DOCTYPE php>
 <?php 
 include 'php/auth.php';
 include 'php/connect_to_db.php';
@@ -14,7 +13,13 @@ $cart_qty = isset($_GET['qty']) ? intval($_GET['qty']) : 1;
 $sql = "SELECT * FROM producttbl WHERE productID = $id";
 $result = mysqli_query($conn, $sql);
 $product = mysqli_fetch_assoc($result);
+
 $display_qty = isset($_GET['qty']) ? intval($_GET['qty']) : 1;
+
+// Format it to look clean (e.g., "May 11, 2026")
+$formatted_date = date("F j, Y g:i A", strtotime($_GET["Date_Added"]));
+
+$hideClass = ($source === 'orders') ? 'hide-actions' : '';
 ?>
 <head>
     <meta charset="UTF-8">
@@ -150,6 +155,9 @@ $display_qty = isset($_GET['qty']) ? intval($_GET['qty']) : 1;
     padding: 12px 20px;
     cursor: pointer;
 }
+.hide-actions {
+    display: none !important;
+}
     </style>
 </head>
 
@@ -198,14 +206,21 @@ $display_qty = isset($_GET['qty']) ? intval($_GET['qty']) : 1;
                             <input type="text" id="qty" name="quantity" value="<?php echo $display_qty; ?>">
                             <button type="button" onclick="changeQty(1)">+</button>
                         </div>
-                    </div>
+                            <p>Date Added: <?php echo $formatted_date; ?></p>
+                        </div>
 
                     <div class="actions">
                         <input type="hidden" id="productID" name="productID" value="<?php echo $product['productID']; ?>">
                         <input type="hidden" name="status" value="shipping">
                         <input type="hidden" name="payment_status" value="cash">
-                        <input class="buy-btn" type="submit" value="Buy">
-                        <button type="button" class="cart-btn" onclick="addToCart()">
+
+                        <?php if (isset($_GET['source']) && $_GET['source'] == 'cart'): ?>
+                            <input type="hidden" name="cartID" value="<?php echo $_GET['cartID']; ?>">
+                            <input type="hidden" name="from_cart" value="true">
+                        <?php endif; ?>
+
+                        <input class="buy-btn <?php echo $hideClass; ?>" type="submit" value="Buy">
+                        <button type="button" class="cart-btn <?php echo $hideClass; ?>" onclick="addToCart()">
                             <svg class="icon white"><use xlink:href="Icons/Add to cart.svg"></use></svg>
                         </button>
                     </div>

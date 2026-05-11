@@ -21,6 +21,16 @@ $date = date("Y-m-d");
 $sql = "INSERT INTO ordertbl (userID, productID, quantity, date, status, payment_status) 
         VALUES ($userID, $productID, $quantity, '$date', '$status', '$payment_status')";
 
+// 2. CHECK IF THIS CAME FROM THE CART
+if (isset($_POST['from_cart']) && $_POST['from_cart'] == 'true') {
+    $cartID = intval($_POST['cartID']);
+    
+    // Delete the record from the cart table
+    $delete_sql = "DELETE FROM carttbl WHERE cartID = $cartID";
+    
+    mysqli_query($conn, $delete_sql);
+}
+
 if (mysqli_query($conn, $sql)) {
     header("Location: ../Product Details.php?id=$productID&order=success");
 } else {

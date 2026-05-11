@@ -126,8 +126,8 @@ include 'php/auth.php';
                             case "name_desc":  $order = " ORDER BY product_name DESC"; break;
                             case "price_asc":  $order = " ORDER BY price ASC"; break;
                             case "price_desc": $order = " ORDER BY price DESC"; break;
-                            case "date_asc":   $order = " ORDER BY created_at ASC"; break;
-                            case "date_desc":  $order = " ORDER BY created_at DESC"; break;
+                            case "date_asc":   $order = " ORDER BY date_ordered ASC"; break;
+                            case "date_desc":  $order = " ORDER BY date_ordered DESC"; break;
                         }
                     }
                     $sql .= $order;
@@ -147,7 +147,7 @@ include 'php/auth.php';
                     while($row = mysqli_fetch_assoc($result)) { 
                 ?>
                         <div class="product-card">
-                            <a href="Product Details.php?id=<?php echo $row['productID']; ?>">
+                            <a href="Product Details.php?id=<?php echo $row['productID']; ?>&source=orders&qty=<?php echo $row['quantity']; ?>&Date_Added=<?php echo $row['date_ordered']; ?>">
                                 <div class="picture-container">
                                     <div class="picture center">
                                         <img src="<?php echo $row['image']; ?>" alt="">

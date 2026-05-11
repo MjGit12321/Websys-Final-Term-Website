@@ -98,8 +98,8 @@ include 'php/auth.php';
                             case "name_desc":  $order = " ORDER BY product_name DESC"; break;
                             case "price_asc":  $order = " ORDER BY price ASC"; break;
                             case "price_desc": $order = " ORDER BY price DESC"; break;
-                            case "date_asc":   $order = " ORDER BY created_at ASC"; break;
-                            case "date_desc":  $order = " ORDER BY created_at DESC"; break;
+                            case "date_asc":   $order = " ORDER BY date_added ASC"; break;
+                            case "date_desc":  $order = " ORDER BY date_added DESC"; break;
                         }
                     }
                     $sql .= $order;
@@ -121,7 +121,7 @@ include 'php/auth.php';
                     ?>
                         
                             <div class="product-card">
-                                <a href="Product Details.php?id=<?php echo $row['productID']; ?>&source=cart&qty=<?php echo $row['quantity']; ?>&cartID=<?php echo $row['cartID']; ?>">
+                                <a href="Product Details.php?id=<?php echo $row['productID']; ?>&source=cart&qty=<?php echo $row['quantity']; ?>&cartID=<?php echo $row['cartID']; ?>&Date_Added=<?php echo $row['date_added']; ?>">
                                 <div class="picture-container">
                                     <div class="picture center">
                                         <img src="<?php echo $row['image']; ?>" alt="">
