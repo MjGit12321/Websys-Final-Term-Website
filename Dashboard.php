@@ -27,7 +27,7 @@ $user = mysqli_fetch_assoc($result);
             background: var(--white);
             border-radius: 18px;
             padding: 10px 18px 18px 18px;
-            box-shadow: 0 0px 10px var(--black);
+            box-shadow: var(--Shadow);
             border: 2px solid var(--secondary);
             position: relative;
             overflow: hidden;

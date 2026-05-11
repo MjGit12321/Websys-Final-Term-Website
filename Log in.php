@@ -117,11 +117,15 @@
         }
         .pass-icon{
             position: absolute;
-            top: 50%;
-            right: 12px;
+            top: 55%;
+            right: 8px;
             transform: translateY(-50%);
             cursor: pointer;
             z-index: 1;
+            border: none;
+            background: none;
+            padding: 0;
+            margin: 0;
         }
         .social-icons svg {
             margin-right: 10px;
@@ -135,7 +139,7 @@
     <div id="dashboard-frame">
         <div id="left-cover">
             <img src="Pictures/Log in pic.png" alt="" srcset="">
-            <h2>Don't have an account?</h2>
+            <h2 style="text-decoration:underline">Don't have an account?</h2>
             <button id="SignUpBtn" onclick="location.href='Sign in.php'">Sign Up</button>
         </div>
         <div id="right-content">
@@ -149,9 +153,8 @@
                 <label for="Password">Password:</label><br>
                 <div class="input-with-icon">
                     <input type="password" name="password" class="login-input" id="Password" value="">   
-                    <svg class="icon pass-icon"><use xlink:href="Icons/Close.svg"></use></svg>
+                    <button type="button" class="pass-icon" onclick="togglePassword()"><svg class="icon"><use id="toggleBtn" xlink:href="Icons/Close.svg"></use></svg></button>
                 </div>
-
                 <input type="submit" class="login-input" id="LoginBtn" value="Log in">  
             </form>           
         </div>
@@ -161,23 +164,20 @@
     <?php include 'components/modal.php'; ?>
     <?php if (isset($_GET['status'])) { ?>
         <script>
-            showModal("<?php echo $_GET['msg']; ?>", "<?php echo $_GET['status']; ?>");
+            document.addEventListener("DOMContentLoaded", () => {
+                showModal("<?php echo $_GET['msg']; ?>", "<?php echo $_GET['status']; ?>");
+
+                // ✅ redirect after success
+                if ("<?php echo $_GET['status']; ?>" === "success") {
+                    setTimeout(() => {
+                        window.location.href = "Dashboard.php";
+                    }, 1500); // 1.5 seconds delay
+                }
+                else{
+                    showModal("<?php echo $_GET['msg']; ?>", "<?php echo $_GET['status']; ?>");
+                }
+            });
         </script>
     <?php } ?>
-
-    <?php if (isset($_GET['status'])) { ?>
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        showModal("<?php echo $_GET['msg']; ?>", "<?php echo $_GET['status']; ?>");
-
-        // ✅ redirect after success
-        if ("<?php echo $_GET['status']; ?>" === "success") {
-            setTimeout(() => {
-                window.location.href = "Dashboard.php";
-            }, 1500); // 1.5 seconds delay
-        }
-    });
-</script>
-<?php } ?>
 </body>
 </html>

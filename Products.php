@@ -53,12 +53,12 @@ include 'php/auth.php';
                         </select>
                     </div>
                     <input 
-                                type="text"
-                                id="search-input"
-                                name="search"
-                                placeholder="Search products..."
-                                value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>"
-                            >
+                        type="text"
+                        id="search-input"
+                        name="search"
+                        placeholder="Search products..."
+                        value="<?php echo isset($_GET['search']) ? htmlspecialchars(trim($_GET['search'])) : ''; ?>"
+                    >
                 </div>
             </form>
 

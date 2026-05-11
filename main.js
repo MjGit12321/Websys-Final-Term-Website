@@ -31,17 +31,36 @@ function closeModal() {
     document.getElementById("modal").style.display = "none";
 }
 
-function changeQty(value) {
-    let qty = document.getElementById("qty");
-    let input = document.getElementById("qty-input");
+function changeQty(amount) {
+    // Get the element
+    const qtyInput = document.getElementById("qty");
+    
+    // Check if the element exists to avoid errors
+    if (!qtyInput) {
+        console.error("Could not find input with ID 'qty'");
+        return;
+    }
 
-    let current = parseInt(qty.innerText);
-    current += value;
+    // Convert value to an integer
+    let currentVal = parseInt(qtyInput.value);
 
-    if (current < 1) current = 1;
+    // If the box is empty or not a number, default to 1
+    if (isNaN(currentVal)) {
+        currentVal = 1;
+    }
 
-    qty.innerText = current;
-    input.value = current;
+    // Perform math
+    let newVal = currentVal + amount;
+
+    // Don't allow less than 1
+    if (newVal < 1) {
+        newVal = 1;
+    }
+
+    // Update the actual input value
+    qtyInput.value = newVal;
+    
+    console.log("New Quantity is: " + qtyInput.value);
 }
 
 function addToCart() {
@@ -66,4 +85,19 @@ function addToCart() {
     .catch(() => {
         showModal("Something went wrong!", "error");
     });
+}
+
+function togglePassword() {
+    const passwordInput = document.getElementById("Password");
+    const IconUsed = document.getElementById("toggleBtn");
+
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        IconUsed.setAttribute('xlink:href', 'Icons/Open.svg');
+        IconUsed.setAttribute('href', 'Icons/Open.svg');
+    } else {
+        passwordInput.type = "password";
+        IconUsed.setAttribute('xlink:href', 'Icons/Close.svg');
+        IconUsed.setAttribute('href', 'Icons/Close.svg');
+    }
 }

@@ -1,26 +1,47 @@
 <?php
 include 'connect_to_db.php';
 
-$username = $_POST['username'];
+// 1. Collect and trim data (removes accidental spaces)
+$username = trim($_POST['username']);
 $password = $_POST['password'];
 $confirm_password = $_POST['confirm_password'];
-$name = $_POST['name'];
+$name = trim($_POST['name']);
 $gender = $_POST['gender'];
 $birthdate = $_POST['birthdate'];
-$email = $_POST['email'];
-$phone = $_POST['phone'];
-$address = $_POST['address'];
+$email = trim($_POST['email']);
+$phone = trim($_POST['phone']);
+$address = trim($_POST['address']);
 
+/* 2. CHECK FOR NULL/EMPTY VALUES */
+// We put all required fields into an array to check them at once
+$required_fields = [$username, $password, $name, $gender, $birthdate, $email, $phone, $address];
 
-if ($password !== $confirm_password) {
-    echo "Passwords do not match!";
-    exit();
+foreach ($required_fields as $field) {
+    if (empty($field)) {
+        header("Location: ../Sign in.php?status=error&msg=Please fill all the fields");
+        exit();
+    }
 }
 
-$sql = "INSERT INTO usertbl (Username, Password, Name, Gender, Birthdate, Email, Phone_Number, Address) VALUES ('$username', '$password', '$name', '$gender', '$birthdate', '$email', '$phone', '$address')";
+// 3. Password Match Check
+if ($password !== $confirm_password) {
+    die("Passwords do not match!");
+}
+
+/* 4. SECURITY FIX: ESCAPE STRINGS */
+// This prevents SQL Injection (special characters breaking your query)
+$username = mysqli_real_escape_string($conn, $username);
+$name = mysqli_real_escape_string($conn, $name);
+$email = mysqli_real_escape_string($conn, $email);
+$phone = mysqli_real_escape_string($conn, $phone);
+$address = mysqli_real_escape_string($conn, $address);
+
+/* 5. INSERT DATA */
+$sql = "INSERT INTO usertbl (Username, Password, Name, Gender, Birthdate, Email, Phone_Number, Address) 
+        VALUES ('$username', '$password', '$name', '$gender', '$birthdate', '$email', '$phone', '$address')";
 
 if (mysqli_query($conn, $sql)) {
-    header("Location: ../Log in.php");
+    header("Location: ../Sign in.php?status=success&msg=Successfully Signed In!");
     exit();
 } else {
     echo "Error: " . mysqli_error($conn);

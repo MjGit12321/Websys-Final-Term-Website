@@ -14,40 +14,114 @@ include 'php/auth.php';
     <?php include 'components/sidebar.php'; ?>
     <div id="main-frame">
         <div class="main-content">
-            <div class="top-group">
-                <div class="sort-group">
-                    <label for="sort">Sort by:</label>
-                    <select id="sort-name" class="sort" name="sort">
-                        <option value="name-asc">Name (A-Z)</option>
-                        <option value="name-desc">Name (Z-A)</option>
-                    </select>
-                    <select id="sort-price" class="sort" name="sort">
-                        <option value="price-asc">Price (Low to High)</option>
-                        <option value="price-desc">Price (High to Low)</option>
-                    </select>
-                    <select id="sort-date" class="sort" name="sort">
-                        <option value="date-asc">Date (New to Old)</option>
-                        <option value="date-desc">Date (Old to New)</option>
-                    </select>
+            <form method="GET">
+                <div class="top-group">
+                    <div class="sort-group">
+                        <label for="sort">Sort by:</label>
+                        <select class="sort" name="sort" onchange="this.form.submit()">
+                            <option value="">Default</option>
+                            <option value="name_asc"
+                                <?php if(isset($_GET['sort']) && $_GET['sort'] == 'name_asc') echo 'selected'; ?>>
+                                Name (A-Z)
+                            </option>
+                            <option value="name_desc"
+                                <?php if(isset($_GET['sort']) && $_GET['sort'] == 'name_desc') echo 'selected'; ?>>
+                                Name (Z-A)
+                            </option>
+                            <option value="price_asc"
+                                <?php if(isset($_GET['sort']) && $_GET['sort'] == 'price_asc') echo 'selected'; ?>>
+                                Price (Low to High)
+                            </option>
+                            <option value="price_desc"
+                                <?php if(isset($_GET['sort']) && $_GET['sort'] == 'price_desc') echo 'selected'; ?>>
+                                Price (High to Low)
+                            </option>
+                            <option value="date_desc"
+                                <?php if(isset($_GET['sort']) && $_GET['sort'] == 'date_desc') echo 'selected'; ?>>
+                                Date (Newest)
+                            </option>
+                            <option value="date_asc"
+                                <?php if(isset($_GET['sort']) && $_GET['sort'] == 'date_asc') echo 'selected'; ?>>
+                                Date (Oldest)
+                            </option>
+                        </select>
+                    </div>
+                    <input 
+                        type="text"
+                        id="search-input"
+                        name="search"
+                        placeholder="Search products..."
+                        value="<?php echo isset($_GET['search']) ? htmlspecialchars(trim($_GET['search'])) : ''; ?>"
+                    >
                 </div>
-                <div id="search-box">
-                    <img src="Icons/search.png" alt="" srcset="">
-                    <input type="text" id="search-input" placeholder="Search products...">
-                </div>
-            </div>
+            </form>
             <br><hr>
             <div class="product-grid-container">
                 <?php
                     include 'php/connect_to_db.php';
 
-                    $sql = "SELECT * FROM view_cart_items WHERE ID = " . $_SESSION['UserID'];
+                    /* PAGINATION SETTINGS */
+                    $limit = 15;
+                    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+                    if($page < 1) $page = 1;
+                    $offset = ($page - 1) * $limit;
+
+                    /* BUILD THE WHERE ARRAY */
+                    // Start with your mandatory ID filter
+                    $where = ["ID = " . (int)$_SESSION['UserID']];
+
+                    /* SEARCH LOGIC */
+                    if(isset($_GET['search']) && trim($_GET['search']) != ''){
+                        $search_term = trim($_GET['search']);
+                        $search = mysqli_real_escape_string($conn, $search_term);
+                        $where[] = "product_name LIKE '%$search%'";
+                    }
+
+                    // Convert the array into a single string: "WHERE ID = 1 AND product_name LIKE..."
+                    $where_sql = " WHERE " . implode(" AND ", $where);
+
+                    /* COUNT QUERY */
+                    $count_sql = "SELECT COUNT(*) as total FROM view_cart_items" . $where_sql;
+                    $count_result = mysqli_query($conn, $count_sql);
+                    $count_row = mysqli_fetch_assoc($count_result);
+                    $total_products = $count_row['total'];
+                    $total_pages = ceil($total_products / $limit);
+
+                    /* MAIN QUERY */
+                    $sql = "SELECT * FROM view_cart_items" . $where_sql;
+
+                    /* SORTING LOGIC */
+                    $order = "";
+                    if(isset($_GET['sort'])){
+                        switch($_GET['sort']){
+                            case "name_asc":   $order = " ORDER BY product_name ASC"; break;
+                            case "name_desc":  $order = " ORDER BY product_name DESC"; break;
+                            case "price_asc":  $order = " ORDER BY price ASC"; break;
+                            case "price_desc": $order = " ORDER BY price DESC"; break;
+                            case "date_asc":   $order = " ORDER BY created_at ASC"; break;
+                            case "date_desc":  $order = " ORDER BY created_at DESC"; break;
+                        }
+                    }
+                    $sql .= $order;
+
+                    /* LIMIT & OFFSET (Must always be last) */
+                    $sql .= " LIMIT $limit OFFSET $offset";
+
+                    /* EXECUTE */
                     $result = mysqli_query($conn, $sql);
+                    if(!$result){
+                        die("SQL Error: " . mysqli_error($conn) . " | Query: " . $sql);
+                    }
+                    
                     ?>
 
-                    <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                    <?php 
+                    if (mysqli_num_rows($result) > 0) {
+                    while($row = mysqli_fetch_assoc($result)) { 
+                    ?>
                         
                             <div class="product-card">
-                                <a href="Product Details.php?id=<?php echo $row['productID']; ?>">
+                                <a href="Product Details.php?id=<?php echo $row['productID']; ?>&source=cart&qty=<?php echo $row['quantity']; ?>&cartID=<?php echo $row['cartID']; ?>">
                                 <div class="picture-container">
                                     <div class="picture center">
                                         <img src="<?php echo $row['image']; ?>" alt="">
@@ -90,18 +164,48 @@ include 'php/auth.php';
                         
                         
 
-                <?php } ?>
+                <?php } } else {
+                        echo "<p>No carts found.</p>";
+                    }?>
                 
             </div>
             <br><hr>
             <div class="bottom-group">
-                <div><</div>
-                <div class="current-section">1</div>
-                <div>2</div>
-                <div>3</div>
-                <div>4</div>
-                <div>5</div>
-                <div>></div>
+
+                <!-- PREVIOUS -->
+                <?php if($page > 1){ ?>
+                    <a href="?page=<?php echo $page - 1; ?>
+                    &search=<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>
+                    &sort=<?php echo isset($_GET['sort']) ? $_GET['sort'] : ''; ?>">
+                        <
+                    </a>
+                <?php } ?>
+
+                <!-- PAGE NUMBERS -->
+                <?php for($i = 1; $i <= $total_pages; $i++){ ?>
+
+                    <a 
+                        class="<?php echo ($i == $page) ? 'current-section' : ''; ?>"
+
+                        href="?page=<?php echo $i; ?>
+                        &search=<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>
+                        &sort=<?php echo isset($_GET['sort']) ? $_GET['sort'] : ''; ?>">
+                        
+                        <?php echo $i; ?>
+
+                    </a>
+
+                <?php } ?>
+
+                <!-- NEXT -->
+                <?php if($page < $total_pages){ ?>
+                    <a href="?page=<?php echo $page + 1; ?>
+                    &search=<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>
+                    &sort=<?php echo isset($_GET['sort']) ? $_GET['sort'] : ''; ?>">
+                        >
+                    </a>
+                <?php } ?>
+
             </div>
         </div>
     </div>

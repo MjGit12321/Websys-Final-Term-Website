@@ -1,15 +1,20 @@
 <!DOCTYPE php>
 <?php 
-session_start(); 
 include 'php/auth.php';
-
 include 'php/connect_to_db.php';
 
-$id = intval($_GET['id']); // prevents errors
+// Always get the productID to ensure the correct item is shown
+$id = intval($_GET['id']); 
+
+// Check if we are coming from the cart to get the specific quantity
+$source = isset($_GET['source']) ? $_GET['source'] : '';
+$cart_qty = isset($_GET['qty']) ? intval($_GET['qty']) : 1;
+
+// Always query the product table so the details (name, img, price) are correct
 $sql = "SELECT * FROM producttbl WHERE productID = $id";
 $result = mysqli_query($conn, $sql);
 $product = mysqli_fetch_assoc($result);
-
+$display_qty = isset($_GET['qty']) ? intval($_GET['qty']) : 1;
 ?>
 <head>
     <meta charset="UTF-8">
@@ -185,22 +190,12 @@ $product = mysqli_fetch_assoc($result);
                     <div class="rating">4.6 ★</div>
                     <div class="sold">200 Sold</div>
                 </div>
-
-                <div class="sizes">
-                    <p>Size:</p>
-                    <div class="size-options">
-                        <button>XS</button>
-                        <button>S</button>
-                        <button>M</button>
-                        <button>L</button>
-                    </div>
-                </div>
                 <form action="php/add_to_order.php" method="POST">
                     <div class="quantity">
                         <p>Quantity</p>
                         <div class="qty-box">
                             <button type="button" onclick="changeQty(-1)">-</button>
-                                <input type="text" id="qty" name="quantity" value="1">
+                            <input type="text" id="qty" name="quantity" value="<?php echo $display_qty; ?>">
                             <button type="button" onclick="changeQty(1)">+</button>
                         </div>
                     </div>

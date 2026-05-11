@@ -179,9 +179,34 @@
         </div>
         <div id="right-cover">
             <img src="Pictures/Sign in pic.png" alt="" srcset="">
-            <h2>Already have an account?</h2>
+            <h2 style="text-decoration:underline">Already have an account?</h2>
             <button id="CoverLoginBtn" onclick="location.href='Log in.php'">Login</button>
         </div>
     </div>
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="css/modal.css">
+    <?php include 'components/modal.php'; ?>
+    <?php if (isset($_GET['status'])) { ?>
+        <script>
+            
+        </script>
+    <?php } ?>
+
+    <?php if (isset($_GET['status'])) { ?>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                showModal("<?php echo $_GET['msg']; ?>", "<?php echo $_GET['status']; ?>");
+
+                // ✅ redirect after success
+                if ("<?php echo $_GET['status']; ?>" === "success") {
+                    setTimeout(() => {
+                        window.location.href = "Log in.php";
+                    }, 1500); // 1.5 seconds delay
+                }else{
+                    showModal("<?php echo $_GET['msg']; ?>", "<?php echo $_GET['status']; ?>");
+                }
+            });
+        </script>
+    <?php } ?>
 </body>
 </html>
