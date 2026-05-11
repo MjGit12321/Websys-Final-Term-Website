@@ -18,7 +18,7 @@ $payment_status = $_POST['payment_status'];
 $date = date("Y-m-d");
 
 // insert order
-$sql = "INSERT INTO ordertbl (userID, productID, quantity, date, status, payment_status) 
+$sql = "INSERT INTO ordertbl (userID, productID, quantity, date_ordered, status, payment_status) 
         VALUES ($userID, $productID, $quantity, '$date', '$status', '$payment_status')";
 
 // 2. CHECK IF THIS CAME FROM THE CART

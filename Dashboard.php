@@ -141,65 +141,6 @@ $user = mysqli_fetch_assoc($result);
             grid-template-columns: repeat(4, minmax(0, 1fr));
             gap: 18px;
         }
-        .product-card {
-            background: var(--secondary);
-            border-radius: 18px;
-            padding: 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            
-            color: var(--white);
-        }
-        .product-card img {
-            width: 100%;
-            border-radius: 16px;
-            object-fit: cover;
-            height: 130px;
-        }
-        .product-card .price {
-           
-            font-size: 18px;
-            font-weight: 700;
-            color: black;
-        }
-        .product-card .name {
-            margin: 0;
-            font-size: 15px;
-            font-weight: 700;
-        }
-        .product-card .name p{
-            margin: 0;
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--card-W-desc);
-        }
-        .product-card .name p:hover, .product-card .name:hover{
-            text-decoration: underline;
-        }
-    
-        .product-card .buy-button {
-            margin-top: -3px;
-            position: absolute;
-            right: 10px;
-            background: var(--btn-buy);
-            color: white;
-            border: none;
-            padding: 5px 23px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 700;
-            align-self: flex-start;
-            border: 1px solid var(--btn-border);
-
-            transition: 0.3s all;
-        }
-        .product-card .buy-button:hover{
-            background-color: white;
-            color: var(--btn-buy);
-            border: 1px solid var(--btn-buy);
-        }
         .img-whitebg{
             background-color: var(--white);
             border-radius: 10px;
@@ -261,38 +202,51 @@ $user = mysqli_fetch_assoc($result);
                             <thead>
                                 <tr>
                                     <th>Order ID</th>
-                                    <th>Date</th>
-                                    <th>Items</th>
-                                    <th>Total Price</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
                                     <th>Status</th>
+                                    <th>Order Date</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>#2012</td>
-                                    <td>Apr 12</td>
-                                    <td>2</td>
-                                    <td>₱ 3,200</td>
-                                    <td>Pending</td>
-                                    <td>View</td>
-                                </tr>
-                                <tr>
-                                    <td>#2017</td>
-                                    <td>Apr 15</td>
-                                    <td>1</td>
-                                    <td>₱ 1,400</td>
-                                    <td>Pending</td>
-                                    <td>View</td>
-                                </tr>
-                                <tr>
-                                    <td>#2024</td>
-                                    <td>Apr 18</td>
-                                    <td>3</td>
-                                    <td>₱ 4,800</td>
-                                    <td>Pending</td>
-                                    <td>View</td>
-                                </tr>
+                                <?php
+                                    // 1. Fetch data from your view
+                                    $query = "SELECT * FROM view_orders where ID = $UserID ORDER BY date_ordered DESC Limit 5";
+                                    $result = mysqli_query($conn, $query);
+
+                                    // 2. Check if there are orders to display
+                                    if (mysqli_num_rows($result) > 0) {
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            // Format the date for the table
+                                            $dateDisp = date("M d, Y", strtotime($row['date_ordered']));
+                                            // Prepare the date for the URL
+                                            $dateUrl = urlencode($row['date_ordered']);
+                                            ?>
+                                            <tr>
+                                                <td>#<?php echo $row['orderID']; ?></td>
+                                                <td><?php echo $row['product_name']; ?></td>
+                                                <td>₱<?php echo number_format($row['price'], 2); ?></td>
+                                                <td><?php echo $row['quantity']; ?></td>
+                                                <td>
+                                                    <span class="status-pill <?php echo strtolower($row['status']); ?>">
+                                                        <?php echo $row['status']; ?>
+                                                    </span>
+                                                </td>
+                                                <td><?php echo $dateDisp; ?></td>
+                                                <td>
+                                                    <a href="Product Details.php?id=<?php echo $row['productID']; ?>&source=orders&qty=<?php echo $row['quantity']; ?>&Date_Added=<?php echo $row['date_ordered']; ?>" style="text-decoration: underline;">
+                                                        View
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    } else {
+                                        echo "<tr><td colspan='7' style='text-align:center; padding: 20px;'>No orders found.</td></tr>";
+                                    }
+                                ?>
                             </tbody>
                         </table>
                     </div>
@@ -305,54 +259,30 @@ $user = mysqli_fetch_assoc($result);
                     <div class="panel recent-card">
                         <h3>Sponsored Items</h3>
                         <div class="recent-products">
-                            <div class="product-card">
-                                <div class="img-whitebg">
-                                    <img src="Pictures/Shoes1.png" alt="Shoes for men">
-                                    <div class="price">₱1,899</div>
-                                    
-                                </div>
-                                
-                                <div class="name">AeroFlex Runner
-                                    <p>Lightweight running shoes ...</p>
-                                </div>
-                                
-                            </div>
-                            <div class="product-card">
-                                <div class="img-whitebg">
-                                    <img src="Pictures/Shoes2.png" alt="Shoes for men">
-                                    <div class="price">₱2,299</div>
-                                </div>
-                                
-                                <div class="name">StreetPulse Classic
-                                    <p>A stylish everyday sneaker ...</p>
-                                </div>
-                                
-                                
-                            </div>
-                            <div class="product-card">
-                                <div class="img-whitebg">
-                                    <img src="Pictures/Shoes3.png" alt="Shoes for men">
-                                    <div class="price">₱2,799</div>
-                                </div>
-                                
-                                <div class="name">VoltEdge Trainers
-                                    <p>High-performance training ...</p>
-                                </div>
-                                
-                                
-                            </div>
-                            <div class="product-card">
-                                <div class="img-whitebg">
-                                    <img src="Pictures/Shoes4.png" alt="Shoes for men">
-                                    <div class="price">₱1,599</div>
-                                </div>
-                                
-                                <div class="name">CloudStep Comfort
-                                    <p>Ultra-soft cushioned shoes ...</p>
-                                </div>
-                                
-                                
-                            </div>
+                            <?php 
+                                $query = "SELECT * FROM producttbl where is_sponsored = 1 Limit 4";
+                                $result = mysqli_query($conn, $query);
+                                while ($row = mysqli_fetch_assoc($result)) { ?>
+                                <a href="Product Details.php?id=<?php echo $row['productID']; ?>">
+                                    <div class="product-card">
+
+                                        <div class="picture-container">
+                                            <div class="picture center">
+                                                    <img src="<?php echo $row['image']; ?>" alt="">
+                                                </div>
+
+                                                <div class="price-container">
+                                                    <div id="price">₱<?php echo $row['price']; ?></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="label-description">
+                                                <div class="label"><?php echo $row['product_name']; ?></div>
+                                                <div class="description"><?php echo $row['description']; ?></div>
+                                            </div>
+                                    </div>
+                                </a>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
