@@ -36,14 +36,29 @@ $email = mysqli_real_escape_string($conn, $email);
 $phone = mysqli_real_escape_string($conn, $phone);
 $address = mysqli_real_escape_string($conn, $address);
 
-/* 5. INSERT DATA */
-$sql = "INSERT INTO usertbl (Username, Password, Name, Gender, Birthdate, Email, Phone_Number, Address) 
-        VALUES ('$username', '$password', '$name', '$gender', '$birthdate', '$email', '$phone', '$address')";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-if (mysqli_query($conn, $sql)) {
-    header("Location: ../Sign in.php?status=success&msg=Successfully Signed In!");
-    exit();
-} else {
-    echo "Error: " . mysqli_error($conn);
-}
+    // 1. Check if the email or username already exists
+    $check_sql = "SELECT * FROM usertbl WHERE Password = '$password' and Username = '$username'";
+    $result = mysqli_query($conn, $check_sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        // 2. If a record is found, stop the process
+        header("Location: ../Sign in.php?status=error&msg=Error account already exists!");
+        exit();
+    } else {
+        // 3. If no record found, proceed with registration
+        /* 5. INSERT DATA */
+        $sql = "INSERT INTO usertbl (Username, Password, Name, Gender, Birthdate, Email, Phone_Number, Address) 
+                VALUES ('$username', '$password', '$name', '$gender', '$birthdate', '$email', '$phone', '$address')";
+
+        if (mysqli_query($conn, $sql)) {
+            header("Location: ../Sign in.php?status=success&msg=Successfully Signed In!");
+            exit();
+        } else {
+            echo "Error: " . mysqli_error($conn);
+        }
+            }
+        }
+
 ?>
