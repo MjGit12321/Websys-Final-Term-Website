@@ -1,13 +1,18 @@
-
+<?php
+$currentPage = basename($_SERVER['PHP_SELF']);
+$isAdmin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
+$dashboardLink = $isAdmin ? 'Admin Dashboard.php' : 'Dashboard.php';
+$isDashboardSelected = $currentPage === 'Dashboard.php' || $currentPage === 'Admin Dashboard.php';
+?>
 <link rel="stylesheet" href="../css/style.css">
 
 <aside id="sidebar" class="sidebar minimized">
     <button id="Minmax_button" onclick="minmax_icon()"><svg class="icon"><use xlink:href="/Web Sys E Commerce/Icons/Menu.svg"></use></svg><span>Minimize</span></button> 
     <button 
-        class="<?php echo basename($_SERVER['PHP_SELF']) == 'Dashboard.php' ? 'sidebar-selected' : ''; ?>" 
-        onclick="location.href='Dashboard.php'">
+        class="<?php echo $isDashboardSelected ? 'sidebar-selected' : ''; ?>" 
+        onclick="location.href='<?php echo $dashboardLink; ?>'">
 
-        <svg class="<?php echo basename($_SERVER['PHP_SELF']) == 'Dashboard.php' ? 'icon icon-selected' : 'icon'; ?>" ><use xlink:href="/Web Sys E Commerce/Icons/Dashboard.svg"></use></svg>
+        <svg class="<?php echo $isDashboardSelected ? 'icon icon-selected' : 'icon'; ?>" ><use xlink:href="/Web Sys E Commerce/Icons/Dashboard.svg"></use></svg>
         <span>Dashboard</span>
     </button>
     <button 

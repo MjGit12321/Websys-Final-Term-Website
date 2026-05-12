@@ -204,15 +204,17 @@ $hideClass = ($source === 'orders') ? 'hide-actions' : '';
                     <div class="rating">4.6 ★</div>
                     <div class="sold">200 Sold</div>
                 </div>
-                <form action="php/add_to_order.php" method="POST">
+                <form action="php/add_to_order.php" method="POST" onsubmit="return validateQuantity();">
                     <div class="quantity">
                         <p>Quantity</p>
                         <div class="qty-box">
                             <button type="button" onclick="changeQty(-1)">-</button>
-                            <input type="text" id="qty" name="quantity" value="<?php echo $display_qty; ?>">
+                            <input type="number" id="qty" name="quantity" value="<?php echo $display_qty; ?>" min="1">
                             <button type="button" onclick="changeQty(1)">+</button>
                         </div>
                             <p>Date Added: <?php echo $formatted_date; ?></p>
+                            <p>Stocks: <?php echo $product['stock']; ?></p>
+
                         </div>
 
                     <div class="actions">
@@ -235,14 +237,18 @@ $hideClass = ($source === 'orders') ? 'hide-actions' : '';
                 <script>
    
                     document.addEventListener("DOMContentLoaded", () => {
-                        <?php if ($_GET['order'] == 'success') { ?>
+                        <?php if (isset($_GET['order']) && $_GET['order'] == 'success') { ?>
                             showModal("Order placed successfully!", "success");
-                        <?php } if ($_GET['order'] == 'error') { ?>
+                        <?php } if (isset($_GET['order']) && $_GET['order'] == 'error') { ?>
                             showModal("Order failed!", "error");
-                        <?php } if ($_GET['order'] == 'success_cart') { ?>
+                        <?php } if (isset($_GET['order']) && $_GET['order'] == 'success_cart') { ?>
                             showModal("Item added to cart!", "success");
-                        <?php } if ($_GET['order'] == 'failed_cart') { ?>
+                        <?php } if (isset($_GET['order']) && $_GET['order'] == 'failed_cart') { ?>
                             showModal("Failed to add item to cart!", "error");
+                        <?php } if (isset($_GET['order']) && $_GET['order'] == 'no_stock') { ?>
+                            showModal("no stock left", "error");
+                        <?php } if (isset($_GET['order']) && $_GET['order'] == 'invalid_quantity') { ?>
+                            showModal("Quantity must be at least 1.", "error");
                         <?php } ?>
                     });
                 </script>

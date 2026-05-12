@@ -3,9 +3,9 @@ session_start();
 include 'connect_to_db.php';
 
 // Security: Only admins can restock
-// if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-//     die("Access Denied.");
-// }
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    die("Access Denied.");
+}
 
 if (isset($_POST['submit'])) {
     // 1. Get and sanitize inputs

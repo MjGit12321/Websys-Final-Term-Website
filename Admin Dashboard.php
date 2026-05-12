@@ -143,6 +143,15 @@ $user = mysqli_fetch_assoc($result);
         .pending-table th {
             color: var(--black);
         }
+        .description-cell {
+            max-width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .date-cell {
+            white-space: nowrap;
+        }
         
         .recent-products {
             display: grid;
@@ -224,8 +233,12 @@ $user = mysqli_fetch_assoc($result);
             
                                                     if ($row['is_banned'] == 1) {
                                                         $status = "Inactive";
+                                                        $action = "Enable";
+                                                        $banValue = 0;
                                                     } else {
                                                         $status = "Active";
+                                                        $action = "Disable";
+                                                        $banValue = 1;
                                                     }
                                                   
                                                 ?>
@@ -237,7 +250,7 @@ $user = mysqli_fetch_assoc($result);
                                                 <td><?php echo $row['Completed_Orders']; ?></td>
                                                 <td><?php echo $row['Total_Orders']; ?></td>
                                                 <td><?php echo $status; ?></td>
-                                                <td style="text-decoration: underline;"><a href="php/ban_user.php?id=<?php echo $row['UserID']; ?>">Disable</a></td>
+                                                <td style="text-decoration: underline;"><a href="php/ban_user.php?id=<?php echo $row['UserID']; ?>&is_banned=<?php echo $banValue; ?>"><?php echo $action; ?></a></td>
                                             </tr>
                                             <?php
                                         }
@@ -254,7 +267,7 @@ $user = mysqli_fetch_assoc($result);
                             <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>description</th>
+                                    <th>Description</th>
                                     <th>Price</th>
                                     <th>Stock</th>
                                     <th>Date Added</th>
@@ -290,10 +303,10 @@ $user = mysqli_fetch_assoc($result);
                                                 ?>
                                                 
                                                 <td><?php echo $row['product_name']; ?></td>
-                                                <td class><?php echo $row['description']; ?></td>
+                                                <td class="description-cell" title="<?php echo htmlspecialchars($row['description']); ?>"><?php echo $row['description']; ?></td>
                                                 <td><?php echo $row['price']; ?></td>
                                                 <td><?php echo $row['stock']; ?></td>
-                                                <td><?php echo $row['created_at']; ?></td>
+                                                <td class="date-cell"><?php echo date("M d, Y", strtotime($row['created_at'])); ?></td>
                                                 <td><?php echo $sponsored; ?></td>
                                                 <td style="text-decoration: underline"><a href="javascript:void(0)" onclick="openRestockModal(<?php echo $row['productID']; ?>)">
         Add Stock

@@ -63,9 +63,30 @@ function changeQty(amount) {
     console.log("New Quantity is: " + qtyInput.value);
 }
 
+function getValidQuantity() {
+    const qtyInput = document.getElementById("qty");
+    const quantity = parseInt(qtyInput.value, 10);
+
+    if (isNaN(quantity) || quantity < 1) {
+        showModal("Quantity must be at least 1.", "error");
+        return null;
+    }
+
+    qtyInput.value = quantity;
+    return quantity;
+}
+
+function validateQuantity() {
+    return getValidQuantity() !== null;
+}
+
 function addToCart() {
     const productID = document.getElementById("productID").value;
-    const quantity = document.getElementById("qty").value;
+    const quantity = getValidQuantity();
+
+    if (quantity === null) {
+        return;
+    }
 
     fetch("php/add_to_cart.php", {
         method: "POST",
@@ -76,8 +97,14 @@ function addToCart() {
     })
     .then(res => res.text())
     .then(data => {
+        data = data.trim();
+
         if (data === "success") {
             showModal("Added to cart!", "success");
+        } else if (data === "invalid_quantity") {
+            showModal("Quantity must be at least 1.", "error");
+        } else if (data === "no_stock") {
+            showModal("no stock left", "error");
         } else {
             showModal("Failed to add to cart!", "error");
         }
