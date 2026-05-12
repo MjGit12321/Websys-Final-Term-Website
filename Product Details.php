@@ -219,6 +219,7 @@ $hideClass = ($source === 'orders') ? 'hide-actions' : '';
                         <input type="hidden" id="productID" name="productID" value="<?php echo $product['productID']; ?>">
                         <input type="hidden" name="status" value="shipping">
                         <input type="hidden" name="payment_status" value="cash">
+                        <input type="hidden" name="price" value="<?php echo $product['price']; ?>">
 
                         <?php if (isset($_GET['source']) && $_GET['source'] == 'cart'): ?>
                             <input type="hidden" name="cartID" value="<?php echo $_GET['cartID']; ?>">

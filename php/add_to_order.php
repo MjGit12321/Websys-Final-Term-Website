@@ -13,6 +13,8 @@ $productID = $_POST['productID'];
 $quantity = $_POST['quantity'];
 $status = $_POST['status'];
 $payment_status = $_POST['payment_status'];
+$price = $_POST['price'];
+$Total_Price = (int)$quantity * (float)$price;
 
 // optional: default date
 $date = date("Y-m-d");
@@ -30,6 +32,13 @@ if (isset($_POST['from_cart']) && $_POST['from_cart'] == 'true') {
     
     mysqli_query($conn, $delete_sql);
 }
+$Total_Price_SQL = number_format($Total_Price, 2, '.', ''); 
+$update_stats = "UPDATE usertbl 
+                 SET Total_Orders = Total_Orders + 1,
+                 Total_Spent = Total_Spent + $Total_Price_SQL
+                 WHERE userID = $userID";
+
+mysqli_query($conn, $update_stats);
 
 if (mysqli_query($conn, $sql)) {
     header("Location: ../Product Details.php?id=$productID&order=success");
