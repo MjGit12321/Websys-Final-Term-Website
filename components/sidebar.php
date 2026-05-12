@@ -33,8 +33,10 @@
     </button>
     <button 
         class="<?php echo basename($_SERVER['PHP_SELF']) == 'Home Page.php' ? 'sidebar-selected' : ''; ?>" 
-        onclick="location.href='Home Page.php'">
-        <svg class="<?php echo basename($_SERVER['PHP_SELF']) == 'Home Page.php' ? 'icon icon-selected' : 'icon'; ?>" ><use xlink:href="/Web Sys E Commerce/Icons/Logout.svg"></use></svg>
+        onclick="location.href='php/logout.php'">  <!-- point to logout.php -->
+        <svg class="<?php echo basename($_SERVER['PHP_SELF']) == 'Home Page.php' ? 'icon icon-selected' : 'icon'; ?>">
+            <use xlink:href="/Web Sys E Commerce/Icons/Logout.svg"></use>
+        </svg>
         <span>Logout</span>
     </button>
 </aside>

@@ -1,4 +1,3 @@
-<!DOCTYPE php>
 <?php 
 include 'php/auth.php';
 include 'php/connect_to_db.php';
@@ -11,6 +10,15 @@ $user = mysqli_fetch_assoc($result);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <script>
+        window.addEventListener('pageshow', function (event) {
+            const navigation = performance.getEntriesByType('navigation')[0];
+
+            if (event.persisted || (navigation && navigation.type === 'back_forward')) {
+                window.location.reload();
+            }
+        });
+    </script>
     <link rel="stylesheet" href="css/style.css">
     <style>
         .content-grid {
