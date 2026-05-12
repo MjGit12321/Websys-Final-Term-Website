@@ -165,16 +165,23 @@
     <?php if (isset($_GET['status'])) { ?>
         <script>
             document.addEventListener("DOMContentLoaded", () => {
-                showModal("<?php echo $_GET['msg']; ?>", "<?php echo $_GET['status']; ?>");
+                const status = "<?php echo htmlspecialchars($_GET['status'], ENT_QUOTES); ?>";
+                const message = "<?php echo htmlspecialchars($_GET['msg'] ?? '', ENT_QUOTES); ?>";
+                const role = "<?php echo htmlspecialchars($_GET['role'] ?? '', ENT_QUOTES); ?>";
+
+                showModal(message, status);
 
                 // ✅ redirect after success
-                if ("<?php echo $_GET['status']; ?>" === "success") {
+
+                if (status === "success") {
                     setTimeout(() => {
-                        window.location.href = "Dashboard.php";
-                    }, 1500); // 1.5 seconds delay
-                }
-                else{
-                    showModal("<?php echo $_GET['msg']; ?>", "<?php echo $_GET['status']; ?>");
+                        // 2. Use the 'role' variable we just got from the URL
+                        if (role === "admin") {
+                            window.location.href = "Admin Dashboard.php";
+                        } else {
+                            window.location.href = "Dashboard.php";
+                        }
+                    }, 1500); 
                 }
             });
         </script>
