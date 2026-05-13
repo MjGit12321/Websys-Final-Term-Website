@@ -29,6 +29,10 @@ function showModal(message, type) {
 
 function closeModal() {
     document.getElementById("modal").style.display = "none";
+
+    if (window.modalRedirectOnClose) {
+        window.location.href = window.modalRedirectOnClose;
+    }
 }
 
 function changeQty(amount) {

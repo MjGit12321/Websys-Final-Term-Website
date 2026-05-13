@@ -23,6 +23,16 @@ foreach ($required_fields as $field) {
     }
 }
 
+if (!preg_match('/@gmail\.com$/i', $email)) {
+    header("Location: ../Sign in.php?status=error&msg=Email must end with @gmail.com");
+    exit();
+}
+
+if (!ctype_digit($phone)) {
+    header("Location: ../Sign in.php?status=error&msg=Phone number must contain numbers only");
+    exit();
+}
+
 // 3. Password Match Check
 if ($password !== $confirm_password) {
     die("Passwords do not match!");

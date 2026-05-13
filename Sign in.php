@@ -137,7 +137,7 @@
             <h5>Sign up your account.</h5>
             <hr width="75%">
 
-            <form class="form" method="post" action="php/sign_in_credentials.php">
+            <form class="form" method="post" action="php/sign_in_credentials.php" onsubmit="return validateSignInForm();" novalidate>
                 <div class="form-group">
                     
                     <label for="Username">Username:</label>
@@ -163,16 +163,16 @@
                 </div>
                 <div class="form-group">
                     <label for="Email">Email:</label>
-                    <input type="text" name="email" class="login-input" id="Email" value=""> 
+                    <input type="email" name="email" class="login-input" id="Email" value="" title="Email must end with @gmail.com"> 
                     <label for="Phone">Phone_Number:</label>
-                    <input type="text" name="phone" class="login-input" id="Phone" value=""> 
+                    <input type="text" name="phone" class="login-input" id="Phone" value="" inputmode="numeric" pattern="[0-9]*" title="Phone number must contain numbers only" oninput="this.value = this.value.replace(/[^0-9]/g, '');"> 
                 </div>
                 <div class="form-group">
                     <label for="Addr">Address:</label>
                     <input type="text" name="address" class="login-input" id="Addr" value=""> 
                 </div>
                 <div class="form-group">
-                    <input type="submit" class="login-input" id="LoginBtn" value="Sign up" onclick="location.href='Log in.php'">  
+                    <input type="submit" class="login-input" id="LoginBtn" value="Sign up">  
                 </div>
                 
             </form>
@@ -184,6 +184,24 @@
         </div>
     </div>
     <script src="main.js"></script>
+    <script>
+        function validateSignInForm() {
+            const email = document.getElementById("Email").value.trim();
+            const phone = document.getElementById("Phone").value.trim();
+
+            if (!email.toLowerCase().endsWith("@gmail.com")) {
+                showModal("Email must end with @gmail.com", "error");
+                return false;
+            }
+
+            if (!/^[0-9]+$/.test(phone)) {
+                showModal("Phone number must contain numbers only", "error");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
     <link rel="stylesheet" href="css/modal.css">
     <?php include 'components/modal.php'; ?>
     <?php if (isset($_GET['status'])) { ?>
@@ -195,15 +213,16 @@
     <?php if (isset($_GET['status'])) { ?>
         <script>
             document.addEventListener("DOMContentLoaded", () => {
-                showModal("<?php echo $_GET['msg']; ?>", "<?php echo $_GET['status']; ?>");
+                const modalMessage = <?php echo json_encode($_GET['msg']); ?>;
+                const modalStatus = <?php echo json_encode($_GET['status']); ?>;
+                showModal(modalMessage, modalStatus);
 
-                // ✅ redirect after success
-                if ("<?php echo $_GET['status']; ?>" === "success") {
+                if (modalStatus === "success") {
                     setTimeout(() => {
                         window.location.href = "Log in.php";
-                    }, 1500); // 1.5 seconds delay
-                }else{
-                    showModal("<?php echo $_GET['msg']; ?>", "<?php echo $_GET['status']; ?>");
+                    }, 1500);
+                } else if (modalMessage === "Email must end with @gmail.com") {
+                    window.modalRedirectOnClose = "Sign in.php";
                 }
             });
         </script>
